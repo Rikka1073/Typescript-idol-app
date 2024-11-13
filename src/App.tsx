@@ -1,11 +1,10 @@
-import { HStack } from "@chakra-ui/react";
-import { Button } from "@chakra-ui/react";
+import { Button, HStack } from "@chakra-ui/react";
 
 function App() {
   return (
     <>
       <HStack>
-        <Button>クリック</Button>
+        <Button>クリックします</Button>
       </HStack>
     </>
   );
