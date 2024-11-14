@@ -1,14 +1,7 @@
-import { HStack } from "@chakra-ui/react";
-import { Button } from "./components/ui/button";
+import Router from "./routes/Router";
 
 function App() {
-  return (
-    <>
-      <HStack>
-        <Button>クリック</Button>
-      </HStack>
-    </>
-  );
+  return <Router />;
 }
 
 export default App;
