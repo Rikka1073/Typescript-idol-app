@@ -1,8 +1,15 @@
 import { Box, Center, Input, Text } from "@chakra-ui/react";
 import { PasswordInput } from "../ui/password-input";
 import { Button } from "../ui/button";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
+  const navigate = useNavigate();
+  const onClickLoginButton = () => {
+    console.log("クリックしました");
+    navigate("/Clothes");
+  };
+
   return (
     <>
       <Box px={10} bg="red.400" h="vh">
@@ -25,9 +32,14 @@ const Login = () => {
               />
             </form>
           </Box>
+          <Center mb={5}>
+            <Button w={200} variant="subtle" onClick={onClickLoginButton}>
+              Login
+            </Button>
+          </Center>
           <Center>
             <Button w={200} variant="subtle">
-              Login
+              Sign Up
             </Button>
           </Center>
         </Box>
