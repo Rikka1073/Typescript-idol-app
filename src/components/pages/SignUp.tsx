@@ -20,7 +20,7 @@ const SignUp = () => {
 
   const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data);
 
-  const onClickLoginButton = (data) => {
+  const onClickSignUpButton = (data) => {
     console.log("クリックしました");
     console.log(data);
     navigate("/Clothes");
@@ -40,12 +40,12 @@ const SignUp = () => {
               variant="flushed"
               _placeholder={{ color: "red.300" }}
               borderColor={"red.300"}
-              color={"red.300"}
+              _focus={{ borderBottom: "none" }}
               mb={5}
             />
             {errors.username && (
               <Text color="black" mb={2}>
-                メールアドレスの入力は必須です
+                ユーザーネームの入力は必須です
               </Text>
             )}
             <PasswordInput
@@ -54,7 +54,7 @@ const SignUp = () => {
               variant="flushed"
               _placeholder={{ color: "red.300" }}
               borderColor={"red.300"}
-              _focus={{ borderBottomColor: "red.300" }}
+              _focus={{ borderBottom: "none" }}
             />
             {errors.password && (
               <Text color="black" mt={5}>
@@ -63,13 +63,15 @@ const SignUp = () => {
             )}
           </form>
         </Box>
-        <Center mb={5}>
-          <Button onClick={onClickLoginButton} disabled={!isValid} w={200} variant="subtle">
-            Login
-          </Button>
-        </Center>
         <Center>
-          <Button w={200} variant="subtle">
+          <Button
+            onClick={onClickSignUpButton}
+            disabled={!isValid}
+            w={200}
+            variant="subtle"
+            bg="red.300"
+            color="white"
+          >
             Sign Up
           </Button>
         </Center>
