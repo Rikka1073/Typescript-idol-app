@@ -3,7 +3,6 @@ import { PasswordInput } from "../ui/password-input";
 import { Button } from "../ui/button";
 import { useNavigate } from "react-router-dom";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { getAllUsersData } from "@/utils/supabaseFunction";
 
 type Inputs = {
   username: string;
@@ -30,10 +29,6 @@ const Login = () => {
     //   alert("ユーザーが存在しません");
     // }
     navigate("/Clothes");
-  };
-
-  const onClickSignUpButton = () => {
-    navigate("/SignUp");
   };
 
   const onClickBackButton = () => {
