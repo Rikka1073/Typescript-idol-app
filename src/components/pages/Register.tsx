@@ -1,6 +1,11 @@
-import { Box, Center, Input, Stack, Text } from "@chakra-ui/react";
+import { Box, Center, Flex, Input, Stack, Text } from "@chakra-ui/react";
+import { FileUploadRoot, FileUploadTrigger } from "../ui/file-button";
+import { Button } from "../ui/button";
+
 import { IoIosAddCircle, IoIosHome, IoIosSearch } from "react-icons/io";
+import { HiUpload } from "react-icons/hi";
 import { useNavigate } from "react-router-dom";
+import { Field } from "../ui/field";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -9,14 +14,46 @@ const Register = () => {
   };
   return (
     <>
-      <Box position="relative" bg="black" h="vh" color="white" px={10}>
-        <Box>
-          <Box>
-            <Text>服を探す</Text>
+      <Box
+        position="relative"
+        bgGradient="to-tl"
+        gradientTo="red.300"
+        gradientVia="pink.200"
+        gradientFrom="purple.200"
+        h="vh"
+        color="white"
+        px={5}
+      >
+        <Box pt={10}>
+          <Text color="black" fontSize="3xl" mb={2}>
+            服を探す
+          </Text>
+          <Text color="black" fontSize="base" mb={2}>
+            探したいアイドルの服の詳細を入力してください
+          </Text>
+          <Box bg="white" px={2} py={5} rounded="md">
             <Stack gap={5}>
-              <Input placeholder="服を探す" />
-              <Input placeholder="服を探す" />
-              <Input placeholder="服を探す" type="file" />
+              <Field label="アイテム名">
+                <Input placeholder="" />
+              </Field>
+              <Field label="アイドル名">
+                <Input placeholder="" />
+              </Field>
+              <Field label="詳細">
+                <Input placeholder="" />
+              </Field>
+              <FileUploadRoot>
+                <FileUploadTrigger asChild>
+                  <Flex gap="4">
+                    <Button variant="outline" size="sm">
+                      <HiUpload /> Upload file
+                    </Button>
+                    <Button variant="outline">
+                      <HiUpload /> Upload file
+                    </Button>
+                  </Flex>
+                </FileUploadTrigger>
+              </FileUploadRoot>
             </Stack>
           </Box>
         </Box>
