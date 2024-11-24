@@ -1,16 +1,40 @@
+import { useState } from "react";
 import { Box, Center, Stack, Text } from "@chakra-ui/react";
-import { FileUploadRoot, FileUploadTrigger } from "../ui/file-button";
+import { FileUploadDropzone, FileUploadList, FileUploadRoot } from "../ui/file-button";
 import { Button } from "../ui/button";
-
 import { IoIosAddCircle, IoIosHome, IoIosSearch } from "react-icons/io";
-import { HiUpload } from "react-icons/hi";
 import { useNavigate } from "react-router-dom";
+
+import { supabase } from "@/utils/supabase";
 
 const Register = () => {
   const navigate = useNavigate();
+  const [file, setFile] = useState<File | null>(null);
+
   const onclickHome = () => {
     navigate("/Clothes");
   };
+
+  const onchangeImage = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFile(e.target.files![0]);
+  };
+
+  const onClickRegisterButton = async () => {
+    console.log("登録ボタンが押されました");
+    if (!file) return;
+    const { data, error } = await supabase.storage
+      .from("pictures")
+      .upload(`Clothes/${file.name}`, file, {
+        cacheControl: "3600",
+        upsert: false,
+      });
+    if (error) {
+      console.error("Error uploading file:", error);
+    } else {
+      console.log("File uploaded successfully:", data);
+    }
+  };
+
   return (
     <>
       <Box
@@ -27,23 +51,23 @@ const Register = () => {
           <Text color="black" fontSize="3xl" mb={2}>
             服を探す
           </Text>
-          <Text color="black" fontSize="base" mb={4}>
+          <Text color="black" fontSize="base" mb={6}>
             探したいアイドルの服を登録しよう！
           </Text>
           <Box bg="white" p={5} rounded="md">
             <Stack gap={5}>
-              <FileUploadRoot w="40%">
-                <FileUploadTrigger asChild>
-                  <Button variant="outline" size="sm" w="100%">
-                    <HiUpload /> Upload file
-                  </Button>
-                </FileUploadTrigger>
+              <FileUploadRoot maxW="xl" alignItems="stretch" maxFiles={10} onChange={onchangeImage}>
+                <FileUploadDropzone label="Drag and drop here to upload" color="black" />
+                <FileUploadList />
               </FileUploadRoot>
-              <Box>
-                <img src="" />
-              </Box>
-              <Button size="sm" bg="#f9a8d4" w="100%" fontWeight="bold">
-                送信
+              <Button
+                onClick={onClickRegisterButton}
+                size="sm"
+                bg="#f9a8d4"
+                w="100%"
+                fontWeight="bold"
+              >
+                登録
               </Button>
             </Stack>
           </Box>
@@ -59,24 +83,24 @@ const Register = () => {
           px={10}
           bg="white"
         >
-          <Text color="#f9a8d4" onClick={onclickHome}>
+          <Box onClick={onclickHome}>
             <Center>
               <IoIosHome size="35px" color="#f9a8d4" />
             </Center>
-            Home
-          </Text>
-          <Text color="#f9a8d4">
+            <Text color="#f9a8d4">Home</Text>
+          </Box>
+          <Box color="#f9a8d4">
             <Center>
               <IoIosAddCircle size="35px" color="#f9a8d4" />
             </Center>
-            Add
-          </Text>
-          <Text color="#f9a8d4">
+            <Text color="#f9a8d4">Add</Text>
+          </Box>
+          <Box color="#f9a8d4">
             <Center>
               <IoIosSearch size="35px" color="#f9a8d4" />
             </Center>
-            Search
-          </Text>
+            <Text color="#f9a8d4">Search</Text>
+          </Box>
         </Box>
       </Box>
     </>
