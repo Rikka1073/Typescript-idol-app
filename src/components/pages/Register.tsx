@@ -30,9 +30,12 @@ const Register = () => {
       });
     if (error) {
       console.error("Error uploading file:", error);
+      alert("既に登録されている画像です");
     } else {
       console.log("File uploaded successfully:", data);
+      navigate("/Clothes");
     }
+    setFile(null);
   };
 
   return (
@@ -47,7 +50,7 @@ const Register = () => {
         color="white"
         px={5}
       >
-        <Box pt={10}>
+        <Box pt={10} md={{ width: "50%", m: "auto" }}>
           <Text color="black" fontSize="3xl" mb={2}>
             服を探す
           </Text>
@@ -56,9 +59,9 @@ const Register = () => {
           </Text>
           <Box bg="white" p={5} rounded="md">
             <Stack gap={5}>
-              <FileUploadRoot maxW="xl" alignItems="stretch" maxFiles={10} onChange={onchangeImage}>
+              <FileUploadRoot onChange={onchangeImage} alignItems="stretch">
                 <FileUploadDropzone label="Drag and drop here to upload" color="black" />
-                <FileUploadList />
+                <FileUploadList clearable />
               </FileUploadRoot>
               <Button
                 onClick={onClickRegisterButton}
@@ -82,6 +85,7 @@ const Register = () => {
           py={4}
           px={10}
           bg="white"
+          md={{ px: "40", py: "8" }}
         >
           <Box onClick={onclickHome}>
             <Center>
