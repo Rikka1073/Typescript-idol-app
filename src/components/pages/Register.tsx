@@ -54,11 +54,11 @@ const Register = () => {
         color="white"
         px={5}
       >
-        <Box pt={10} md={{ width: "50%", m: "auto" }}>
+        <Box pt={8} md={{ width: "50%", m: "auto" }}>
           <Text color="black" fontSize="3xl" mb={2}>
             服を探す
           </Text>
-          <Text color="black" fontSize="base" mb={6}>
+          <Text color="black" fontSize="base" mb={4}>
             探したいアイドルの服を登録しよう！
           </Text>
           <Box bg="white" p={5} rounded="md">
@@ -90,7 +90,7 @@ const Register = () => {
                   bg="#f9a8d4"
                   w="100%"
                   fontWeight="bold"
-                  mt={2}
+                  mt={4}
                   disabled={!isValid}
                 >
                   登録
@@ -115,19 +115,25 @@ const Register = () => {
             <Center>
               <IoIosHome size="35px" color="#f9a8d4" />
             </Center>
-            <Text color="#f9a8d4">Home</Text>
+            <Center>
+              <Text color="#f9a8d4">Home</Text>
+            </Center>
           </Box>
           <Box color="#f9a8d4">
             <Center>
               <IoIosAddCircle size="35px" color="#f9a8d4" />
             </Center>
-            <Text color="#f9a8d4">Add</Text>
+            <Center>
+              <Text color="#f9a8d4">Add</Text>
+            </Center>
           </Box>
           <Box color="#f9a8d4">
             <Center>
               <IoIosSearch size="35px" color="#f9a8d4" />
             </Center>
-            <Text color="#f9a8d4">Search</Text>
+            <Center>
+              <Text color="#f9a8d4">Search</Text>
+            </Center>
           </Box>
         </Box>
       </Box>
