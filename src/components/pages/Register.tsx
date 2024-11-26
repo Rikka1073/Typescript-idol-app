@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Box, Center, Stack, Text } from "@chakra-ui/react";
 import { IoIosAddCircle, IoIosHome, IoIosSearch } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
@@ -10,7 +9,6 @@ import { Button } from "../ui/button";
 
 const Register = () => {
   const navigate = useNavigate();
-  // const [file, setFile] = useState<File | null>(null);
   const { handleSubmit, control, setValue, formState } = useForm<{ file: File | null }>({
     defaultValues: { file: null },
   });
