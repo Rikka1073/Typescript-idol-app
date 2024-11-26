@@ -1,30 +1,36 @@
 import { useState } from "react";
 import { Box, Center, Stack, Text } from "@chakra-ui/react";
-import { FileUploadDropzone, FileUploadList, FileUploadRoot } from "../ui/file-button";
-import { Button } from "../ui/button";
 import { IoIosAddCircle, IoIosHome, IoIosSearch } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
+import { Controller, useForm } from "react-hook-form";
 
 import { supabase } from "@/utils/supabase";
+import { FileUploadDropzone, FileUploadList, FileUploadRoot } from "../ui/file-button";
+import { Button } from "../ui/button";
 
 const Register = () => {
   const navigate = useNavigate();
-  const [file, setFile] = useState<File | null>(null);
+  // const [file, setFile] = useState<File | null>(null);
+  const { handleSubmit, control, setValue, formState } = useForm<{ file: File | null }>({
+    defaultValues: { file: null },
+  });
+  const { isValid } = formState;
 
   const onclickHome = () => {
     navigate("/Clothes");
   };
 
   const onchangeImage = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFile(e.target.files![0]);
+    const selectedFile = e.target.files?.[0] || null;
+    setValue("file", selectedFile);
   };
 
-  const onClickRegisterButton = async () => {
+  const onSubmit = async (data: { file: File | null }) => {
     console.log("登録ボタンが押されました");
-    if (!file) return;
-    const { data, error } = await supabase.storage
+    if (!data.file) return;
+    const { data: uploadData, error } = await supabase.storage
       .from("pictures")
-      .upload(`Clothes/${file.name}`, file, {
+      .upload(`Clothes/${data.file.name}`, data.file, {
         cacheControl: "3600",
         upsert: false,
       });
@@ -32,10 +38,10 @@ const Register = () => {
       console.error("Error uploading file:", error);
       alert("既に登録されている画像です");
     } else {
-      console.log("File uploaded successfully:", data);
+      console.log("File uploaded successfully:", uploadData);
       navigate("/Clothes");
     }
-    setFile(null);
+    setValue("file", null);
   };
 
   return (
@@ -59,19 +65,39 @@ const Register = () => {
           </Text>
           <Box bg="white" p={5} rounded="md">
             <Stack gap={5}>
-              <FileUploadRoot onChange={onchangeImage} alignItems="stretch">
-                <FileUploadDropzone label="Drag and drop here to upload" color="black" />
-                <FileUploadList clearable />
-              </FileUploadRoot>
-              <Button
-                onClick={onClickRegisterButton}
-                size="sm"
-                bg="#f9a8d4"
-                w="100%"
-                fontWeight="bold"
-              >
-                登録
-              </Button>
+              <form onSubmit={handleSubmit(onSubmit)}>
+                <Controller
+                  name="file"
+                  control={control}
+                  rules={{
+                    required: "画像をアップロードしてください",
+                  }}
+                  render={({ fieldState }) => (
+                    <>
+                      <FileUploadRoot onChange={onchangeImage} alignItems="stretch">
+                        <FileUploadDropzone label="Drag and drop here to upload" color="black" />
+                        <FileUploadList clearable />
+                      </FileUploadRoot>
+                      {fieldState.error && (
+                        <Text color="red.500" fontSize="sm">
+                          {fieldState.error.message}
+                        </Text>
+                      )}
+                    </>
+                  )}
+                />
+                <Button
+                  type="submit"
+                  size="sm"
+                  bg="#f9a8d4"
+                  w="100%"
+                  fontWeight="bold"
+                  mt={2}
+                  disabled={!isValid}
+                >
+                  登録
+                </Button>
+              </form>
             </Stack>
           </Box>
         </Box>
