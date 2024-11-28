@@ -54,15 +54,15 @@ const Register = () => {
         color="white"
         px={5}
       >
-        <Box pt={8} md={{ width: "50%", m: "auto" }}>
-          <Text color="black" fontSize="3xl" mb={2}>
+        <Box pt={6} md={{ width: "50%", m: "auto" }}>
+          <Text color="black" fontSize="2xl" mb={2}>
             服を探す
           </Text>
           <Text color="black" fontSize="base" mb={4}>
             探したいアイドルの服を登録しよう！
           </Text>
-          <Box bg="white" p={5} rounded="md">
-            <Stack gap={5}>
+          <Box bg="white" p={4} rounded="md">
+            <Stack>
               <form onSubmit={handleSubmit(onSubmit)}>
                 <Controller
                   name="file"
@@ -77,7 +77,7 @@ const Register = () => {
                         <FileUploadList clearable />
                       </FileUploadRoot>
                       {fieldState.error && (
-                        <Text color="red.500" fontSize="sm">
+                        <Text color="red.500" fontSize="sm" fontWeight="bold" mt={4}>
                           {fieldState.error.message}
                         </Text>
                       )}
@@ -109,11 +109,11 @@ const Register = () => {
           py={4}
           px={10}
           bg="white"
-          md={{ px: "40", py: "8" }}
+          md={{ px: "40", py: "6" }}
         >
           <Box onClick={onclickHome}>
             <Center>
-              <IoIosHome size="35px" color="#f9a8d4" />
+              <IoIosHome size="30px" color="#f9a8d4" />
             </Center>
             <Center>
               <Text color="#f9a8d4">Home</Text>
@@ -121,7 +121,7 @@ const Register = () => {
           </Box>
           <Box color="#f9a8d4">
             <Center>
-              <IoIosAddCircle size="35px" color="#f9a8d4" />
+              <IoIosAddCircle size="30px" color="#f9a8d4" />
             </Center>
             <Center>
               <Text color="#f9a8d4">Add</Text>
@@ -129,7 +129,7 @@ const Register = () => {
           </Box>
           <Box color="#f9a8d4">
             <Center>
-              <IoIosSearch size="35px" color="#f9a8d4" />
+              <IoIosSearch size="30px" color="#f9a8d4" />
             </Center>
             <Center>
               <Text color="#f9a8d4">Search</Text>
