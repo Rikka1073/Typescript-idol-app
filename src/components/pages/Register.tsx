@@ -9,10 +9,11 @@ import { Button } from "../ui/button";
 
 const Register = () => {
   const navigate = useNavigate();
-  const { handleSubmit, control, setValue, formState } = useForm<{ file: File | null }>({
+  const { handleSubmit, control, setValue } = useForm<{
+    file: File | null;
+  }>({
     defaultValues: { file: null },
   });
-  const { isValid } = formState;
 
   const onclickHome = () => {
     navigate("/Clothes");
@@ -84,15 +85,7 @@ const Register = () => {
                     </>
                   )}
                 />
-                <Button
-                  type="submit"
-                  size="sm"
-                  bg="#f9a8d4"
-                  w="100%"
-                  fontWeight="bold"
-                  mt={4}
-                  disabled={!isValid}
-                >
+                <Button type="submit" size="sm" bg="#f9a8d4" w="100%" fontWeight="bold" mt={4}>
                   登録
                 </Button>
               </form>
