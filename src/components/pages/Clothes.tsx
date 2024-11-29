@@ -1,6 +1,7 @@
 import { supabase } from "@/utils/supabase";
 import { Box, Image, Spinner, Text } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
+import Menu from "../Templetes/Menu";
 
 const Clothes = () => {
   const [images, setImages] = useState<string[]>([]);
@@ -54,6 +55,7 @@ const Clothes = () => {
           </Box>
         ))
       )}
+      <Menu />
     </Box>
   );
 };
