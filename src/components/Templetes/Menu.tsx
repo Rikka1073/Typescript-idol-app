@@ -8,6 +8,10 @@ const Menu = () => {
     navigate("/Clothes");
   };
 
+  const onclickAdd = () => {
+    navigate("/Clothes/Register");
+  };
+
   return (
     <Box
       display="flex"
@@ -31,7 +35,7 @@ const Menu = () => {
           <Text color="#f9a8d4">Home</Text>
         </Center>
       </Box>
-      <Box color="#f9a8d4">
+      <Box onClick={onclickAdd}>
         <Center>
           <IoIosAddCircle size="30px" color="#f9a8d4" />
         </Center>
@@ -39,7 +43,7 @@ const Menu = () => {
           <Text color="#f9a8d4">Add</Text>
         </Center>
       </Box>
-      <Box color="#f9a8d4">
+      <Box onClick={onclickAdd}>
         <Center>
           <IoIosSearch size="30px" color="#f9a8d4" />
         </Center>
