@@ -1,11 +1,11 @@
-import { Box, Center, Stack, Text } from "@chakra-ui/react";
-import { IoIosAddCircle, IoIosHome, IoIosSearch } from "react-icons/io";
+import { Box, Stack, Text } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 import { Controller, useForm } from "react-hook-form";
 
 import { supabase } from "@/utils/supabase";
 import { FileUploadDropzone, FileUploadList, FileUploadRoot } from "../ui/file-button";
 import { Button } from "../ui/button";
+import Menu from "../Templetes/Menu";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -14,10 +14,6 @@ const Register = () => {
   }>({
     defaultValues: { file: null },
   });
-
-  const onclickHome = () => {
-    navigate("/Clothes");
-  };
 
   const onchangeImage = (e: React.ChangeEvent<HTMLInputElement>) => {
     const selectedFile = e.target.files?.[0] || null;
@@ -92,43 +88,7 @@ const Register = () => {
             </Stack>
           </Box>
         </Box>
-        <Box
-          display="flex"
-          justifyContent="space-between"
-          position="fixed"
-          bottom="0"
-          left="0"
-          width="100%"
-          py={4}
-          px={10}
-          bg="white"
-          md={{ px: "40", py: "6" }}
-        >
-          <Box onClick={onclickHome}>
-            <Center>
-              <IoIosHome size="30px" color="#f9a8d4" />
-            </Center>
-            <Center>
-              <Text color="#f9a8d4">Home</Text>
-            </Center>
-          </Box>
-          <Box color="#f9a8d4">
-            <Center>
-              <IoIosAddCircle size="30px" color="#f9a8d4" />
-            </Center>
-            <Center>
-              <Text color="#f9a8d4">Add</Text>
-            </Center>
-          </Box>
-          <Box color="#f9a8d4">
-            <Center>
-              <IoIosSearch size="30px" color="#f9a8d4" />
-            </Center>
-            <Center>
-              <Text color="#f9a8d4">Search</Text>
-            </Center>
-          </Box>
-        </Box>
+        <Menu />
       </Box>
     </>
   );
