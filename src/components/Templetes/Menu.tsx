@@ -1,15 +1,21 @@
 import { Box, Center, Text } from "@chakra-ui/react";
-import { IoIosAddCircle, IoIosHome, IoIosSearch } from "react-icons/io";
+import { IoIosAddCircle, IoIosHome } from "react-icons/io";
+import { MdOutlineQuestionAnswer } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 
 const Menu = () => {
   const navigate = useNavigate();
+
   const onclickHome = () => {
     navigate("/Clothes");
   };
 
   const onclickAdd = () => {
     navigate("/Clothes/Register");
+  };
+
+  const onclickAnswer = () => {
+    navigate("/Clothes/Answer");
   };
 
   return (
@@ -43,12 +49,12 @@ const Menu = () => {
           <Text color="#f9a8d4">Add</Text>
         </Center>
       </Box>
-      <Box onClick={onclickAdd}>
+      <Box onClick={onclickAnswer}>
         <Center>
-          <IoIosSearch size="30px" color="#f9a8d4" />
+          <MdOutlineQuestionAnswer size="30px" color="#f9a8d4" />
         </Center>
         <Center>
-          <Text color="#f9a8d4">Search</Text>
+          <Text color="#f9a8d4">Answer</Text>
         </Center>
       </Box>
     </Box>
