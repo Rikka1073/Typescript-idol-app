@@ -1,3 +1,4 @@
+import Answer from "@/components/pages/Answer";
 import Clothe from "@/components/pages/Clothe";
 import Clothes from "@/components/pages/Clothes";
 import Home from "@/components/pages/Home";
@@ -15,6 +16,7 @@ const Router = () => {
       <Route path="/Clothes" element={<Clothes />}></Route>
       <Route path="/Clothes/:id" element={<Clothe />}></Route>
       <Route path="/Clothes/register" element={<Register />} />
+      <Route path="/Clothes/answer" element={<Answer />} />
     </Routes>
   );
 };
