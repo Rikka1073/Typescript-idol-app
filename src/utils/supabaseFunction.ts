@@ -29,19 +29,31 @@ export const createUser = async (username: string, password: string) => {
 };
 
 export const fetchImages = async () => {
-  const { data, error } = await supabase.storage.from("pictures").list("Clothes");
-  if (data) {
-    console.log(data);
-    const filteredImages = data.filter((image) => image.name !== ".emptyFolderPlaceholder");
-    const urls = await Promise.all(
-      filteredImages.map(async (image) => {
-        const { data } = supabase.storage.from("pictures").getPublicUrl(`Clothes/${image.name}`);
-        console.log(data.publicUrl);
-        return data.publicUrl;
-      })
-    );
-    return urls;
+  // const { data, error } = await supabase.storage.from("pictures").list("Clothes");
+  // if (data) {
+  //   console.log(data);
+  //   const filteredImages = data.filter((image) => image.name !== ".emptyFolderPlaceholder");
+  //   const urls = await Promise.all(
+  //     filteredImages.map(async (image) => {
+  //       const { data } = supabase.storage.from("pictures").getPublicUrl(`Clothes/${image.name}`);
+  //       console.log(data.publicUrl);
+  //       return data.publicUrl;
+  //     })
+  //   );
+  //   return urls;
+  // } else {
+  //   console.error(error);
+  // }
+  const { data, error } = await supabase.from("clothes").select("*");
+  if (error) {
+    console.log("Error fetching data with clothes:", error);
   } else {
-    console.error(error);
+    console.log("Fetched data with clothes:", data);
+  }
+
+  if (data) {
+    return data;
+  } else {
+    return [];
   }
 };

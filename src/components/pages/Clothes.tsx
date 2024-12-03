@@ -3,17 +3,27 @@ import { useEffect, useState } from "react";
 import Menu from "../Templetes/Menu";
 import { fetchImages } from "@/utils/supabaseFunction";
 
+type ImageType = {
+  file_name: string;
+  id: string;
+};
+
+export const imgPath =
+  "https://nkorgdijxhnswdubdvri.supabase.co/storage/v1/object/public/pictures/Clothes/";
+
 const Clothes = () => {
-  const [images, setImages] = useState<string[] | undefined>([]);
+  const [images, setImages] = useState<ImageType[] | undefined>([]);
   const [error, setError] = useState<string | null>(null);
+
   useEffect(() => {
     fetchImages()
-      .then((urls) => {
-        setImages(urls);
+      .then((data) => {
+        setImages(data);
+        console.log(data);
       })
       .catch((error) => {
         setError(error);
-        console.log(error);
+        console.error(error);
       });
   }, []);
 
@@ -36,12 +46,12 @@ const Clothes = () => {
         px={5}
         display="flex"
         flexWrap="wrap"
-        rowGap={8}
-        gap={8}
+        columnGap={8}
+        rowGap={4}
         justifyContent="space-between"
         mt="65px"
         overflow="scroll"
-        h="calc(100vh - 50px)"
+        h="calc(100vh - 100px)"
       >
         {!images || images.length === 0 ? (
           <Box display="flex" alignItems="center" justifyContent="center" h="100vh" w="full">
@@ -54,8 +64,16 @@ const Clothes = () => {
           </Box>
         ) : (
           images.map((image, index) => (
-            <Box key={index} bg="purple.100" w="45%" h="30%" rounded="xl">
-              <Image src={image} alt="clothes" w="80%" margin="auto" />
+            <Box key={index} bg="purple.100" w="45%" h="200px" rounded="xl">
+              <Link href={`/Clothes/${image.id}`} display="block" w="100%" h="100%">
+                <Image
+                  src={`${imgPath}/${image.file_name}`}
+                  alt="clothes"
+                  w="80%"
+                  margin="auto"
+                  py={4}
+                />
+              </Link>
             </Box>
           ))
         )}

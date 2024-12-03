@@ -29,11 +29,23 @@ const Register = () => {
         cacheControl: "3600",
         upsert: false,
       });
+
+    const publicUrl = await supabase.storage
+      .from("pictures")
+      .getPublicUrl(`Clothes/${data.file.name}`);
+
+    const { data: uploadDataTable, error: insetError } = await supabase.from("clothes").insert({
+      file_name: data.file.name,
+      file_url: publicUrl,
+    });
+
     if (error) {
       console.error("Error uploading file:", error);
       alert("既に登録されている画像です");
+    } else if (insetError) {
+      console.error("Error inserting file:", insetError);
     } else {
-      console.log("File uploaded successfully:", uploadData);
+      console.log("File uploaded successfully:", uploadData, uploadDataTable);
       navigate("/Clothes");
     }
     setValue("file", null);
