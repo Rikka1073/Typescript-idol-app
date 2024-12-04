@@ -5,11 +5,9 @@ import { fetchImages } from "@/utils/supabaseFunction";
 
 type ImageType = {
   file_name: string;
+  file_url: string;
   id: string;
 };
-
-export const imgPath =
-  "https://nkorgdijxhnswdubdvri.supabase.co/storage/v1/object/public/pictures/Clothes/";
 
 const Clothes = () => {
   const [images, setImages] = useState<ImageType[] | undefined>([]);
@@ -66,13 +64,8 @@ const Clothes = () => {
           images.map((image, index) => (
             <Box key={index} bg="purple.100" w="45%" h="200px" rounded="xl">
               <Link href={`/Clothes/${image.id}`} display="block" w="100%" h="100%">
-                <Image
-                  src={`${imgPath}/${image.file_name}`}
-                  alt="clothes"
-                  w="80%"
-                  margin="auto"
-                  py={4}
-                />
+                <Image src={image.file_url} alt="clothes" w="80%" margin="auto" py={4} />
+                <Text textAlign="center">{image.id}</Text>
               </Link>
             </Box>
           ))

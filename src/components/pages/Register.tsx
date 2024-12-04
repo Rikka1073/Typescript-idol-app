@@ -30,13 +30,12 @@ const Register = () => {
         upsert: false,
       });
 
-    const publicUrl = await supabase.storage
-      .from("pictures")
-      .getPublicUrl(`Clothes/${data.file.name}`);
+    const imageUrl = supabase.storage.from("pictures").getPublicUrl(`Clothes/${data.file.name}`);
+    console.log(imageUrl);
 
     const { data: uploadDataTable, error: insetError } = await supabase.from("clothes").insert({
       file_name: data.file.name,
-      file_url: publicUrl,
+      file_url: imageUrl.data?.publicUrl,
     });
 
     if (error) {
