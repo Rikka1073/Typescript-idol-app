@@ -2,6 +2,7 @@ import { Box, Image, Link, Spinner, Text } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import Menu from "../Templetes/Menu";
 import { fetchImages } from "@/utils/supabaseFunction";
+import Header from "../Templetes/Header";
 
 type ImageType = {
   file_name: string;
@@ -34,11 +35,7 @@ const Clothes = () => {
 
   return (
     <Box>
-      <Box position="fixed" top={0} w="100%" bg="yellow.100" left="0" textAlign="center" h="50px">
-        <Box>
-          <Text>Header</Text>
-        </Box>
-      </Box>
+      <Header />
       <Box
         bg="white"
         px={5}

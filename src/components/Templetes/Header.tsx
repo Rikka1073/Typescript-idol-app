@@ -1,9 +1,11 @@
-import { Box } from "@chakra-ui/react";
+import { Box, Text } from "@chakra-ui/react";
 
 const Header = () => {
   return (
-    <Box>
-      <Box>Header</Box>
+    <Box position="fixed" top={0} w="100%" bg="yellow.100" left="0" textAlign="center" h="50px">
+      <Box>
+        <Text>Header</Text>
+      </Box>
     </Box>
   );
 };
