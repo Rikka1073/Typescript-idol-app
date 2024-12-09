@@ -1,10 +1,13 @@
 import { Box, Center, Text } from "@chakra-ui/react";
 import { IoIosAddCircle, IoIosHome } from "react-icons/io";
 import { MdOutlineQuestionAnswer } from "react-icons/md";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 
-const Menu = () => {
+const Menu = ({ pageId }) => {
   const navigate = useNavigate();
+  const pathname = useLocation().pathname;
+  const { id } = useParams();
+  const pageUrl = pathname === `/Clothes/${id}`;
 
   const onclickHome = () => {
     navigate("/Clothes");
@@ -15,7 +18,7 @@ const Menu = () => {
   };
 
   const onclickAnswer = () => {
-    navigate("/Clothes/Answer");
+    navigate(`/Clothes/Answer?id=${pageId}`);
   };
 
   return (
@@ -49,14 +52,16 @@ const Menu = () => {
           <Text color="#f9a8d4">Add</Text>
         </Center>
       </Box>
-      <Box onClick={onclickAnswer}>
-        <Center>
-          <MdOutlineQuestionAnswer size="30px" color="#f9a8d4" />
-        </Center>
-        <Center>
-          <Text color="#f9a8d4">Answer</Text>
-        </Center>
-      </Box>
+      {pageUrl && (
+        <Box onClick={onclickAnswer}>
+          <Center>
+            <MdOutlineQuestionAnswer size="30px" color="#f9a8d4" />
+          </Center>
+          <Center>
+            <Text color="#f9a8d4">Answer</Text>
+          </Center>
+        </Box>
+      )}
     </Box>
   );
 };
