@@ -5,9 +5,7 @@ import { useLocation, useNavigate, useParams } from "react-router-dom";
 
 const Menu = ({ pageId }) => {
   const navigate = useNavigate();
-  const pathname = useLocation().pathname;
   const { id } = useParams();
-  const pageUrl = pathname === `/Clothes/${id}`;
 
   const onclickHome = () => {
     navigate("/Clothes");
@@ -52,7 +50,7 @@ const Menu = ({ pageId }) => {
           <Text color="#f9a8d4">Add</Text>
         </Center>
       </Box>
-      {pageUrl && (
+      {id && (
         <Box onClick={onclickAnswer}>
           <Center>
             <MdOutlineQuestionAnswer size="30px" color="#f9a8d4" />
