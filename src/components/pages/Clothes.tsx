@@ -66,7 +66,7 @@ const Clothes = () => {
             </Box>
           ))
         )}
-        <Menu />
+        <Menu pageId={null} />
       </Box>
     </Box>
   );
