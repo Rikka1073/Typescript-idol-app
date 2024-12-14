@@ -51,3 +51,13 @@ export const addAnswer = async (link: string, idol: string, text: string, pramsI
     console.log("Error fetching data with answers:", error);
   }
 };
+
+export const getAnswer = async () => {
+  const { data, error } = await supabase.from("answers").select("*");
+  if (error) {
+    console.log("Error fetching data with answers:", error);
+  } else {
+    console.log("Fetched data with answers:", data);
+  }
+  return data;
+};
