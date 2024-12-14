@@ -44,12 +44,8 @@ export const fetchImages = async () => {
 };
 
 export const addAnswer = async (link: string, idol: string, text: string) => {
-  const { data, error } = await supabase
-    .from("answers")
-    .insert({ link: link, idol: idol, text: text });
+  const { error } = await supabase.from("answers").insert({ link: link, idol: idol, text: text });
   if (error) {
     console.log("Error fetching data with answers:", error);
-  } else {
-    console.log("Fetched data with answers:", data);
   }
 };

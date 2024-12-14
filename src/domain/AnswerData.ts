@@ -1,3 +1,3 @@
-export class User {
+export class AnswerData {
   constructor(public link: string, public idol: string, public text: string) {}
 }
