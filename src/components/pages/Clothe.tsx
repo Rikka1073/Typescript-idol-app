@@ -22,7 +22,6 @@ const Clothe = () => {
         try {
           const { data } = await supabase.from("clothes").select("*").eq("id", id).single();
           setImages(data);
-          console.log(data);
         } catch (error) {
           console.error("Error fetching image:", error);
         }

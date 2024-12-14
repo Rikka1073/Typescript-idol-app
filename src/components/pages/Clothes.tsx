@@ -18,7 +18,6 @@ const Clothes = () => {
     fetchImages()
       .then((data) => {
         setImages(data);
-        console.log(data);
       })
       .catch((error) => {
         setError(error);
