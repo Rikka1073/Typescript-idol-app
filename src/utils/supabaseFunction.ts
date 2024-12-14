@@ -43,8 +43,10 @@ export const fetchImages = async () => {
   }
 };
 
-export const addAnswer = async (link: string, idol: string, text: string) => {
-  const { error } = await supabase.from("answers").insert({ link: link, idol: idol, text: text });
+export const addAnswer = async (link: string, idol: string, text: string, pramsId: string) => {
+  const { error } = await supabase
+    .from("answers")
+    .insert({ link: link, idol: idol, text: text, pramsId: pramsId });
   if (error) {
     console.log("Error fetching data with answers:", error);
   }

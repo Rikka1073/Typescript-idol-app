@@ -7,12 +7,13 @@ import { useForm } from "react-hook-form";
 import { AnswerData } from "@/domain/AnswerData";
 import { useState } from "react";
 import { addAnswer } from "@/utils/supabaseFunction";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 type Inputs = {
   link: string;
   idol: string;
   text: string;
+  pramsId: string;
 };
 
 const Answer = () => {
@@ -26,13 +27,20 @@ const Answer = () => {
       link: data.link,
       idol: data.idol,
       text: data.text,
+      pramsId: data.pramsId,
     };
     const newAnswers = [...answers, newAnswer];
     setAnswers(newAnswers);
-    addAnswer(data.link, data.idol, data.text);
+    addAnswer(data.link, data.idol, data.text, data.pramsId);
     navigate("/Clothes");
   });
 
+  const search = useLocation().search;
+  const query = new URLSearchParams(search);
+  const paramsId = query.get("id");
+  const valueId = paramsId ? paramsId : "";
+  console.log(paramsId);
+  console.log(valueId);
   return (
     <Box
       pt="95px"
@@ -56,6 +64,7 @@ const Answer = () => {
             <Field label="詳細">
               <Input {...register("text")} />
             </Field>
+            <Input type="hidden" value={valueId} {...register("pramsId")} />
             <Button type="submit" w="50%">
               Submit
             </Button>
