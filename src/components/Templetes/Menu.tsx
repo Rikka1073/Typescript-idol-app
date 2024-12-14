@@ -1,7 +1,7 @@
 import { Box, Center, Text } from "@chakra-ui/react";
 import { IoIosAddCircle, IoIosHome } from "react-icons/io";
 import { MdOutlineQuestionAnswer } from "react-icons/md";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 const Menu = ({ pageId }) => {
   const navigate = useNavigate();
