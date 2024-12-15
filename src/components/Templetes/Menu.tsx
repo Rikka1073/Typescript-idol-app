@@ -3,7 +3,10 @@ import { IoIosAddCircle, IoIosHome } from "react-icons/io";
 import { MdOutlineQuestionAnswer } from "react-icons/md";
 import { useNavigate, useParams } from "react-router-dom";
 
-const Menu = ({ pageId }) => {
+type MenuProps = {
+  pageId: string | undefined;
+};
+const Menu = ({ pageId }: MenuProps) => {
   const navigate = useNavigate();
   const { id } = useParams();
 
