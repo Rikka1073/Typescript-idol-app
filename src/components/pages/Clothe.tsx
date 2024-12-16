@@ -14,8 +14,8 @@ type ImageType = {
 };
 
 const Clothe = () => {
-  const [images, setImages] = useState<ImageType | undefined>(undefined);
-  const [answer, setAnswer] = useState<AnswerData[]>([]);
+  const [images, setImages] = useState<ImageType | null>(null);
+  const [answer, setAnswer] = useState<AnswerData[] | null>(null);
 
   const { id } = useParams();
 
@@ -65,7 +65,7 @@ const Clothe = () => {
             <Image src={`${images.file_url}`} alt="clothes" w="100%" margin="auto" />
           </Box>
         )}
-        {answer ? (
+        {answer && answer.length > 0 ? (
           <>
             <Box mb={5}>
               {answer.map((item, index) => {

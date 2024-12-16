@@ -1,4 +1,4 @@
-import { Box, Input, Stack, Text } from "@chakra-ui/react";
+import { Box, Input, Stack } from "@chakra-ui/react";
 import Menu from "../Templetes/Menu";
 import Header from "../Templetes/Header";
 import { Button } from "../ui/button";
@@ -22,7 +22,6 @@ const Answer = () => {
   const methods = useForm<Inputs>();
   const { handleSubmit, register } = methods;
   const onsubmit = handleSubmit((data) => {
-    console.log(data);
     const newAnswer: AnswerData = {
       link: data.link,
       idol: data.idol,
@@ -39,8 +38,7 @@ const Answer = () => {
   const query = new URLSearchParams(search);
   const paramsId = query.get("id");
   const valueId = paramsId ? paramsId : "";
-  console.log(paramsId);
-  console.log(valueId);
+
   return (
     <Box
       pt="95px"
