@@ -99,7 +99,7 @@ const Register = () => {
             </Stack>
           </Box>
         </Box>
-        <Menu />
+        <Menu pageId={undefined} />
       </Box>
     </>
   );
