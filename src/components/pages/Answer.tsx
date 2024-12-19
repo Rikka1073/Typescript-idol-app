@@ -69,7 +69,7 @@ const Answer = () => {
           </Stack>
         </form>
       </Box>
-      <Menu pageId={null} />
+      <Menu pageId={undefined} />
     </Box>
   );
 };
