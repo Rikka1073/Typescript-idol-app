@@ -43,9 +43,9 @@ const Clothes = () => {
         columnGap={8}
         rowGap={4}
         justifyContent="space-between"
-        mt="65px"
+        mt="100px"
         overflow="scroll"
-        h="calc(100vh - 100px)"
+        h={{ base: "calc(100vh - 250px)", md: "calc(100vh - 100px)" }}
       >
         {!images || images.length === 0 ? (
           <Box display="flex" alignItems="center" justifyContent="center" h="100vh" w="full">
@@ -66,7 +66,7 @@ const Clothes = () => {
             </Box>
           ))
         )}
-        <Menu pageId={null} />
+        <Menu pageId={undefined} />
       </Box>
     </Box>
   );
