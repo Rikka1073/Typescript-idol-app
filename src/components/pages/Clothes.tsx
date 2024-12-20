@@ -35,38 +35,39 @@ const Clothes = () => {
   return (
     <Box>
       <Header />
-      <Box
-        bg="white"
-        px={5}
-        display="flex"
-        flexWrap="wrap"
-        columnGap={8}
-        rowGap={4}
-        justifyContent="space-between"
-        mt="100px"
-        overflow="scroll"
-        h={{ base: "calc(100vh - 250px)", md: "calc(100vh - 100px)" }}
-      >
-        {!images || images.length === 0 ? (
-          <Box display="flex" alignItems="center" justifyContent="center" h="100vh" w="full">
-            <Box textAlign="center">
-              <Spinner color="purple.400" />
-              <Text color="purple.400" textAlign="center" mt={2}>
-                Loading...
-              </Text>
+      <Box bg="red.200" px={5} columnGap={8} rowGap={4} py="100px">
+        <Box
+          overflow="scroll"
+          h={{
+            base: "calc(100vh - 250px)",
+            md: "calc(100vh - 100px)",
+          }}
+          display="flex"
+          flexWrap="wrap"
+          gap={4}
+          justifyContent="space-between"
+        >
+          {!images || images.length === 0 ? (
+            <Box display="flex" alignItems="center" justifyContent="center" h="100vh" w="full">
+              <Box textAlign="center">
+                <Spinner color="purple.400" />
+                <Text color="purple.400" textAlign="center" mt={2}>
+                  Loading...
+                </Text>
+              </Box>
             </Box>
-          </Box>
-        ) : (
-          images.map((image, index) => (
-            <Box key={index} bg="purple.100" w="45%" h="200px" rounded="xl">
-              <Link href={`/Clothes/${image.id}`} display="block" w="100%" h="100%">
-                <Image src={image.file_url} alt="clothes" w="80%" margin="auto" py={4} />
-                <Text textAlign="center">{image.id}</Text>
-              </Link>
-            </Box>
-          ))
-        )}
-        <Menu pageId={undefined} />
+          ) : (
+            images.map((image, index) => (
+              <Box key={index} bg="white" w="45%" h="200px" rounded="xl" shadow="md">
+                <Link href={`/Clothes/${image.id}`} display="block" w="100%" h="100%">
+                  <Image src={image.file_url} alt="clothes" w="80%" margin="auto" py={4} />
+                  <Text textAlign="center">{image.id}</Text>
+                </Link>
+              </Box>
+            ))
+          )}
+          <Menu pageId={undefined} />
+        </Box>
       </Box>
     </Box>
   );
