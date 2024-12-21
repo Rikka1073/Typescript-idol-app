@@ -6,6 +6,7 @@ import { supabase } from "@/utils/supabase";
 import { FileUploadDropzone, FileUploadList, FileUploadRoot } from "../ui/file-button";
 import { Button } from "../ui/button";
 import Menu from "../Templetes/Menu";
+import Header from "../Templetes/Header";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -51,57 +52,47 @@ const Register = () => {
   };
 
   return (
-    <>
-      <Box
-        position="relative"
-        bgGradient="to-tl"
-        gradientTo="red.300"
-        gradientVia="pink.200"
-        gradientFrom="purple.200"
-        h="vh"
-        color="white"
-        px={5}
-      >
-        <Box pt={6} md={{ width: "50%", m: "auto" }}>
-          <Text color="black" fontSize="2xl" mb={2}>
-            服を探す
-          </Text>
-          <Text color="black" fontSize="base" mb={4}>
-            探したいアイドルの服を登録しよう！
-          </Text>
-          <Box bg="white" p={4} rounded="md">
-            <Stack>
-              <form onSubmit={handleSubmit(onSubmit)}>
-                <Controller
-                  name="file"
-                  control={control}
-                  rules={{
-                    required: "画像をアップロードしてください",
-                  }}
-                  render={({ fieldState }) => (
-                    <>
-                      <FileUploadRoot onChange={onchangeImage} alignItems="stretch">
-                        <FileUploadDropzone label="Drag and drop here to upload" color="black" />
-                        <FileUploadList clearable />
-                      </FileUploadRoot>
-                      {fieldState.error && (
-                        <Text color="red.500" fontSize="sm" fontWeight="bold" mt={4}>
-                          {fieldState.error.message}
-                        </Text>
-                      )}
-                    </>
-                  )}
-                />
-                <Button type="submit" size="sm" bg="#f9a8d4" w="100%" fontWeight="bold" mt={4}>
-                  登録
-                </Button>
-              </form>
-            </Stack>
-          </Box>
+    <Box pt="90px" bg="red.200" h="vh" color="white" px={5}>
+      <Box md={{ width: "50%", m: "auto" }}>
+        <Header />
+        <Text color="black" fontSize="2xl" mb={2}>
+          服を探す
+        </Text>
+        <Text color="black" fontSize="base" mb={4}>
+          探したいアイドルの服を登録しよう！
+        </Text>
+        <Box bg="white" p={4} rounded="md">
+          <Stack>
+            <form onSubmit={handleSubmit(onSubmit)}>
+              <Controller
+                name="file"
+                control={control}
+                rules={{
+                  required: "画像をアップロードしてください",
+                }}
+                render={({ fieldState }) => (
+                  <>
+                    <FileUploadRoot onChange={onchangeImage} alignItems="stretch">
+                      <FileUploadDropzone label="Drag and drop here to upload" color="black" />
+                      <FileUploadList clearable />
+                    </FileUploadRoot>
+                    {fieldState.error && (
+                      <Text color="red.500" fontSize="sm" fontWeight="bold" mt={4}>
+                        {fieldState.error.message}
+                      </Text>
+                    )}
+                  </>
+                )}
+              />
+              <Button type="submit" size="sm" bg="#f9a8d4" w="100%" fontWeight="bold" mt={4}>
+                登録
+              </Button>
+            </form>
+          </Stack>
         </Box>
-        <Menu pageId={undefined} />
       </Box>
-    </>
+      <Menu pageId={undefined} />
+    </Box>
   );
 };
 

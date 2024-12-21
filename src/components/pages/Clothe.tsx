@@ -50,53 +50,73 @@ const Clothe = () => {
   return (
     <Box>
       <Header />
-      <Box bg="white" px={5} mt="65px">
-        {!images ? (
-          <Box display="flex" alignItems="center" justifyContent="center" h="100vh" w="full">
-            <Box textAlign="center">
-              <Spinner color="purple.400" />
-              <Text color="purple.400" textAlign="center" mt={2}>
-                Loading...
+      <Box bg="red.200" pt="70px" pb="106px" px={5} scrollbar="hidden">
+        <Box
+          overflow="scroll"
+          h={{
+            base: "calc(100vh - 100px)",
+            md: "calc(100vh - 100px)",
+          }}
+        >
+          {!images ? (
+            <Box display="flex" alignItems="center" justifyContent="center" h="100vh" w="full">
+              <Box textAlign="center">
+                <Spinner color="white" />
+                <Text color="white" textAlign="center" mt={2}>
+                  Loading...
+                </Text>
+              </Box>
+            </Box>
+          ) : (
+            <Box
+              width={{ base: "100%", md: "40%" }}
+              margin={{ base: "auto", md: "auto" }}
+              mb={{ base: 5, md: "50px" }}
+            >
+              <Image src={`${images.file_url}`} alt="clothes" w="100%" margin="auto" rounded="xl" />
+            </Box>
+          )}
+          {answer && answer.length > 0 ? (
+            <>
+              <Box mb={5}>
+                {answer.map((item, index) => {
+                  return (
+                    <Box
+                      key={index}
+                      bg="white"
+                      w={{ base: "100%", md: "100%" }}
+                      h="auto"
+                      rounded="xl"
+                      p={5}
+                      margin={{ base: "auto", md: "auto" }}
+                    >
+                      <Text fontWeight="bold">回答</Text>
+                      <Text>{item.text}</Text>
+                      <Text>{item.idol}</Text>
+                      <Text>{item.link}</Text>
+                    </Box>
+                  );
+                })}
+              </Box>
+            </>
+          ) : (
+            <Box
+              bg="white"
+              w="100%"
+              h="200px"
+              rounded="xl"
+              py={5}
+              display="flex"
+              alignItems="center"
+              justifyContent="center"
+            >
+              <Text color="black" textAlign="center" mt={2} fontWeight="bold">
+                回答がありません！
               </Text>
             </Box>
-          </Box>
-        ) : (
-          <Box mb={5}>
-            <Image src={`${images.file_url}`} alt="clothes" w="100%" margin="auto" />
-          </Box>
-        )}
-        {answer && answer.length > 0 ? (
-          <>
-            <Box mb={5}>
-              {answer.map((item, index) => {
-                return (
-                  <Box key={index}>
-                    <Text>{item.text}</Text>
-                    <Text>{item.idol}</Text>
-                    <Text>{item.link}</Text>
-                  </Box>
-                );
-              })}
-            </Box>
-            <Text>{id}のページが表示されます</Text>
-          </>
-        ) : (
-          <Box
-            bg="purple.100"
-            w="100%"
-            h="200px"
-            rounded="xl"
-            py={5}
-            display="flex"
-            alignItems="center"
-            justifyContent="center"
-          >
-            <Text color="black" textAlign="center" mt={2} fontWeight="bold">
-              回答がありません！
-            </Text>
-          </Box>
-        )}
-        <Menu pageId={id} />
+          )}
+          <Menu pageId={id} />
+        </Box>
       </Box>
     </Box>
   );

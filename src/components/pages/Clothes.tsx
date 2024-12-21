@@ -35,23 +35,24 @@ const Clothes = () => {
   return (
     <Box>
       <Header />
-      <Box bg="red.200" px={5} columnGap={8} rowGap={4} py="100px">
+      <Box bg="red.200" px={5} columnGap={8} rowGap={4} pt="70px" pb="106px">
         <Box
           overflow="scroll"
           h={{
-            base: "calc(100vh - 250px)",
+            base: "calc(100vh - 100px)",
             md: "calc(100vh - 100px)",
           }}
           display="flex"
           flexWrap="wrap"
-          gap={4}
+          gap="20px"
+          scrollbar="hidden"
           justifyContent="space-between"
         >
           {!images || images.length === 0 ? (
             <Box display="flex" alignItems="center" justifyContent="center" h="100vh" w="full">
               <Box textAlign="center">
-                <Spinner color="purple.400" />
-                <Text color="purple.400" textAlign="center" mt={2}>
+                <Spinner color="white" />
+                <Text color="white" textAlign="center" mt={2}>
                   Loading...
                 </Text>
               </Box>

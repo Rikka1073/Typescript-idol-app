@@ -1,4 +1,4 @@
-import { Box, Input, Stack } from "@chakra-ui/react";
+import { Box, Input, Stack, Text } from "@chakra-ui/react";
 import Menu from "../Templetes/Menu";
 import Header from "../Templetes/Header";
 import { Button } from "../ui/button";
@@ -40,34 +40,34 @@ const Answer = () => {
   const valueId = paramsId ? paramsId : "";
 
   return (
-    <Box
-      pt="95px"
-      px={5}
-      bgGradient="to-tl"
-      gradientTo="red.300"
-      gradientVia="pink.200"
-      gradientFrom="purple.200"
-      h="vh"
-    >
-      <Header />
-      <Box bg="white" py={5} px={2} rounded="md">
-        <form onSubmit={onsubmit}>
-          <Stack gap={5}>
-            <Field label="リンク" required>
-              <Input {...register("link")} />
-            </Field>
-            <Field label="アイドル名・グループ名">
-              <Input {...register("idol")} />
-            </Field>
-            <Field label="詳細">
-              <Input {...register("text")} />
-            </Field>
-            <Input type="hidden" value={valueId} {...register("pramsId")} />
-            <Button type="submit" w="50%">
-              Submit
-            </Button>
-          </Stack>
-        </form>
+    <Box pt="90px" px={5} bg="red.200" h="vh">
+      <Box md={{ width: "50%", m: "auto" }}>
+        <Header />
+        <Text color="black" fontSize="2xl" mb={2}>
+          服を探す
+        </Text>
+        <Text color="black" fontSize="base" mb={4}>
+          探したいアイドルの服を登録しよう！
+        </Text>
+        <Box bg="white" py={5} px={2} rounded="md">
+          <form onSubmit={onsubmit}>
+            <Stack gap={5}>
+              <Field label="リンク" required>
+                <Input {...register("link")} />
+              </Field>
+              <Field label="アイドル名・グループ名">
+                <Input {...register("idol")} />
+              </Field>
+              <Field label="詳細">
+                <Input {...register("text")} />
+              </Field>
+              <Input type="hidden" value={valueId} {...register("pramsId")} />
+              <Button type="submit" w="100%" bg="#f9a8d4" fontWeight="bold">
+                登録
+              </Button>
+            </Stack>
+          </form>
+        </Box>
       </Box>
       <Menu pageId={undefined} />
     </Box>
