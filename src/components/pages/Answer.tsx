@@ -44,10 +44,10 @@ const Answer = () => {
       <Box md={{ width: "50%", m: "auto" }}>
         <Header />
         <Text color="black" fontSize="2xl" mb={2}>
-          服を探す
+          回答する
         </Text>
         <Text color="black" fontSize="base" mb={4}>
-          探したいアイドルの服を登録しよう！
+          服の情報を教えてあげましょう
         </Text>
         <Box bg="white" py={5} px={2} rounded="md">
           <form onSubmit={onsubmit}>

@@ -35,7 +35,14 @@ const Clothes = () => {
   return (
     <Box>
       <Header />
-      <Box bg="red.200" px={5} columnGap={8} rowGap={4} pt="70px" pb="106px">
+      <Box
+        bg="red.200"
+        px={5}
+        columnGap={8}
+        rowGap={4}
+        pt={{ base: "70px", lg: "120px" }}
+        pb="106px"
+      >
         <Box
           overflow="scroll"
           h={{
@@ -59,7 +66,14 @@ const Clothes = () => {
             </Box>
           ) : (
             images.map((image, index) => (
-              <Box key={index} bg="white" w="45%" h="200px" rounded="xl" shadow="md">
+              <Box
+                key={index}
+                bg="white"
+                w={{ base: "45%", md: "20%" }}
+                h={{ base: "30%", md: "45%" }}
+                rounded="xl"
+                shadow="md"
+              >
                 <Link href={`/Clothes/${image.id}`} display="block" w="100%" h="100%">
                   <Image src={image.file_url} alt="clothes" w="80%" margin="auto" py={4} />
                   <Text textAlign="center">{image.id}</Text>

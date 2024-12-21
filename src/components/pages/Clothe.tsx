@@ -50,12 +50,15 @@ const Clothe = () => {
   return (
     <Box>
       <Header />
-      <Box bg="red.200" pt="70px" pb="106px" px={5} scrollbar="hidden">
+      <Box bg="red.200" pt={{ base: "70px", lg: "120px" }} pb="106px" px={5} h={{ lg: "100vh" }}>
         <Box
-          overflow="scroll"
+          overflow={{
+            base: "scroll",
+            lg: "hidden",
+          }}
           h={{
             base: "calc(100vh - 100px)",
-            md: "calc(100vh - 100px)",
+            lg: "auto",
           }}
         >
           {!images ? (
@@ -84,13 +87,15 @@ const Clothe = () => {
                     <Box
                       key={index}
                       bg="white"
-                      w={{ base: "100%", md: "100%" }}
+                      w={{ base: "100%", md: "50%" }}
                       h="auto"
                       rounded="xl"
                       p={5}
                       margin={{ base: "auto", md: "auto" }}
                     >
-                      <Text fontWeight="bold">回答</Text>
+                      <Text fontWeight="bold" mb="10px">
+                        回答
+                      </Text>
                       <Text>{item.text}</Text>
                       <Text>{item.idol}</Text>
                       <Text>{item.link}</Text>
@@ -102,13 +107,14 @@ const Clothe = () => {
           ) : (
             <Box
               bg="white"
-              w="100%"
+              w={{ base: "100%", md: "50%" }}
               h="200px"
               rounded="xl"
               py={5}
               display="flex"
               alignItems="center"
               justifyContent="center"
+              margin={{ base: "auto", md: "auto" }}
             >
               <Text color="black" textAlign="center" mt={2} fontWeight="bold">
                 回答がありません！
