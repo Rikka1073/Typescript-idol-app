@@ -21,6 +21,10 @@ const Header = ({ pageId }: MenuProps) => {
     navigate(`/Clothes/Answer?id=${pageId}`);
   };
 
+  const onclickLogout = () => {
+    navigate("/Login");
+  };
+
   return (
     <Box
       position="fixed"
@@ -80,6 +84,9 @@ const Header = ({ pageId }: MenuProps) => {
                 Answer
               </Link>
             )}
+            <Link onClick={onclickLogout} color="#f9a8d4">
+              Logout
+            </Link>
           </Box>
         </Box>
       </Box>

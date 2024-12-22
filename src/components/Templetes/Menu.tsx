@@ -23,6 +23,10 @@ const Menu = ({ pageId }: MenuProps) => {
     navigate(`/Clothes/Answer?id=${pageId}`);
   };
 
+  const onclickLogout = () => {
+    navigate("/Login");
+  };
+
   return (
     <Box
       display="flex"
@@ -64,6 +68,14 @@ const Menu = ({ pageId }: MenuProps) => {
           </Center>
         </Box>
       )}
+      <Box onClick={onclickLogout}>
+        <Center>
+          <IoIosAddCircle size="30px" color="#f9a8d4" />
+        </Center>
+        <Center>
+          <Text color="#f9a8d4">Logout</Text>
+        </Center>
+      </Box>
     </Box>
   );
 };
