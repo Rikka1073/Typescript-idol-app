@@ -40,7 +40,12 @@ const Answer = () => {
   const valueId = paramsId ? paramsId : "";
 
   return (
-    <Box pt="90px" px={5} bg="red.200" h="vh">
+    <Box
+      pt={{ base: "90px", sm: "110px", md: "130px", lg: "150px" }}
+      px={{ base: "20px", sm: "40px", md: "60px", lg: "80px" }}
+      bg="red.200"
+      h="vh"
+    >
       <Box md={{ width: "50%", m: "auto" }}>
         <Header pageId={undefined} />
         <Text color="black" fontSize="2xl" mb={2}>

@@ -52,7 +52,13 @@ const Register = () => {
   };
 
   return (
-    <Box pt={{ base: "70px", lg: "150px" }} bg="red.200" h="vh" color="white" px={5}>
+    <Box
+      pt={{ base: "90px", sm: "110px", md: "130px", lg: "150px" }}
+      bg="red.200"
+      h="vh"
+      color="white"
+      px={{ base: "20px", sm: "40px", md: "60px", lg: "80px" }}
+    >
       <Box md={{ width: "50%", m: "auto" }}>
         <Header pageId={undefined} />
         <Text color="black" fontSize="2xl" mb={2}>

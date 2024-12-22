@@ -50,7 +50,13 @@ const Clothe = () => {
   return (
     <Box>
       <Header pageId={id} />
-      <Box bg="red.200" pt={{ base: "70px", lg: "150px" }} pb="106px" px={5} h={{ lg: "100vh" }}>
+      <Box
+        bg="red.200"
+        pt={{ base: "90px", sm: "110px", md: "130px", lg: "150px" }}
+        pb="106px"
+        px={5}
+        h={{ lg: "100vh" }}
+      >
         <Box
           overflow={{
             base: "scroll",
@@ -72,7 +78,7 @@ const Clothe = () => {
             </Box>
           ) : (
             <Box
-              width={{ base: "100%", md: "40%" }}
+              width={{ base: "100%", sm: "70%", md: "30%" }}
               margin={{ base: "auto", md: "auto" }}
               mb={{ base: 5, md: "50px" }}
             >
@@ -87,7 +93,7 @@ const Clothe = () => {
                     <Box
                       key={index}
                       bg="white"
-                      w={{ base: "100%", md: "50%" }}
+                      width={{ base: "100%", sm: "80%", md: "40%" }}
                       h="auto"
                       rounded="xl"
                       p={5}
@@ -107,7 +113,7 @@ const Clothe = () => {
           ) : (
             <Box
               bg="white"
-              w={{ base: "100%", md: "50%" }}
+              width={{ base: "100%", sm: "80%", md: "40%" }}
               h="200px"
               rounded="xl"
               py={5}

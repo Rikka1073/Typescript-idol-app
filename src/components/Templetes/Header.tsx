@@ -30,7 +30,7 @@ const Header = ({ pageId }: MenuProps) => {
       shadow="sm"
       left="0"
       textAlign="center"
-      h={{ base: "50px", lg: "100px" }}
+      h={{ base: "50px", md: "80px", lg: "100px" }}
     >
       <Box
         h="100%"
@@ -75,7 +75,11 @@ const Header = ({ pageId }: MenuProps) => {
             <Link onClick={onclickAdd} color="#f9a8d4">
               Add
             </Link>
-            {id && <Link onClick={onclickAnswer}>Answer</Link>}
+            {id && (
+              <Link onClick={onclickAnswer} color="#f9a8d4">
+                Answer
+              </Link>
+            )}
           </Box>
         </Box>
       </Box>
