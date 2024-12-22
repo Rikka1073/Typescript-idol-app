@@ -49,8 +49,8 @@ const Clothe = () => {
 
   return (
     <Box>
-      <Header />
-      <Box bg="red.200" pt={{ base: "70px", lg: "120px" }} pb="106px" px={5} h={{ lg: "100vh" }}>
+      <Header pageId={id} />
+      <Box bg="red.200" pt={{ base: "70px", lg: "150px" }} pb="106px" px={5} h={{ lg: "100vh" }}>
         <Box
           overflow={{
             base: "scroll",

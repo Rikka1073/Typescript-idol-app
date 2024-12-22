@@ -6,6 +6,7 @@ import { useNavigate, useParams } from "react-router-dom";
 type MenuProps = {
   pageId: string | undefined;
 };
+
 const Menu = ({ pageId }: MenuProps) => {
   const navigate = useNavigate();
   const { id } = useParams();

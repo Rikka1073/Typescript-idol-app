@@ -42,7 +42,7 @@ const Answer = () => {
   return (
     <Box pt="90px" px={5} bg="red.200" h="vh">
       <Box md={{ width: "50%", m: "auto" }}>
-        <Header />
+        <Header pageId={undefined} />
         <Text color="black" fontSize="2xl" mb={2}>
           回答する
         </Text>

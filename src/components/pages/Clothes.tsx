@@ -34,13 +34,13 @@ const Clothes = () => {
 
   return (
     <Box>
-      <Header />
+      <Header pageId={undefined} />
       <Box
         bg="red.200"
-        px={5}
+        px={{ base: "20px", sm: "40px", md: "60px", lg: "80px" }}
         columnGap={8}
         rowGap={4}
-        pt={{ base: "70px", lg: "120px" }}
+        pt={{ base: "70px", lg: "150px" }}
         pb="106px"
       >
         <Box
@@ -70,7 +70,7 @@ const Clothes = () => {
                 key={index}
                 bg="white"
                 w={{ base: "45%", md: "20%" }}
-                h={{ base: "30%", md: "45%" }}
+                h={{ base: "30%", sm: "40%", md: "35%", lg: "45%" }}
                 rounded="xl"
                 shadow="md"
               >

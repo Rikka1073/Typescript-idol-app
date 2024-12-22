@@ -52,9 +52,9 @@ const Register = () => {
   };
 
   return (
-    <Box pt="90px" bg="red.200" h="vh" color="white" px={5}>
+    <Box pt={{ base: "70px", lg: "150px" }} bg="red.200" h="vh" color="white" px={5}>
       <Box md={{ width: "50%", m: "auto" }}>
-        <Header />
+        <Header pageId={undefined} />
         <Text color="black" fontSize="2xl" mb={2}>
           服を探す
         </Text>
