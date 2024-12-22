@@ -52,12 +52,23 @@ const Header = ({ pageId }: MenuProps) => {
             lg: "none",
           }}
         >
-          <Link fontWeight="bold" fontSize={{ lg: "2xl" }} onClick={onclickHome} color="#f9a8d4">
+          <Link
+            fontWeight="bold"
+            fontSize={{ md: "xl", lg: "2xl" }}
+            onClick={onclickHome}
+            color="#f9a8d4"
+          >
             K-Style Finder
           </Link>
         </Box>
         <Box display={{ base: "none", sm: "none", md: "block", lg: "block" }} fontWeight="bold">
-          <Box display="flex" justifyContent="left" w="100%" gap="40px" fontSize="xl">
+          <Box
+            display="flex"
+            justifyContent="left"
+            w="100%"
+            gap="40px"
+            fontSize={{ md: "lg", lg: "xl" }}
+          >
             <Link colorPalette="pink" onClick={onclickHome} color="#f9a8d4">
               Home
             </Link>
