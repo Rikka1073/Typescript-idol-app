@@ -54,7 +54,12 @@ const Answer = () => {
         <Text color="black" fontSize="base" mb={4}>
           服の情報を教えてあげましょう
         </Text>
-        <Box bg="white" py={5} px={2} rounded="md">
+        <Box
+          bg="white"
+          py={5}
+          px={{ base: "10px", sm: "20px", md: "20px", lg: "30px" }}
+          rounded="md"
+        >
           <form onSubmit={onsubmit}>
             <Stack gap={5}>
               <Field label="リンク" required>

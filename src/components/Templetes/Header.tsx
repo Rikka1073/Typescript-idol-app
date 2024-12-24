@@ -58,7 +58,7 @@ const Header = ({ pageId }: MenuProps) => {
         >
           <Link
             fontWeight="bold"
-            fontSize={{ md: "xl", lg: "2xl" }}
+            fontSize={{ sm: "lg", md: "xl", lg: "2xl" }}
             onClick={onclickHome}
             color="#f9a8d4"
           >
