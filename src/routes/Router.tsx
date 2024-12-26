@@ -1,10 +1,10 @@
-import Answer from "@/components/pages/Answer";
-import Clothe from "@/components/pages/Clothe";
-import Clothes from "@/components/pages/Clothes";
-import Home from "@/components/pages/Home";
-import Login from "@/components/pages/Login";
-import Register from "@/components/pages/Register";
-import SignUp from "@/components/pages/SignUp";
+import Home from "../components/pages/Home";
+import Login from "../components/pages/Login";
+import SignUp from "../components/pages/SignUp";
+import Clothes from "../components/pages/Clothes";
+import Clothe from "../components/pages/Clothe";
+import Register from "../components/pages/Register";
+import Answer from "../components/pages/Answer";
 import { Route, Routes } from "react-router-dom";
 
 const Router = () => {

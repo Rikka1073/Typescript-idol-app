@@ -1,13 +1,14 @@
+import { useState } from "react";
 import { Box, Input, Stack, Text } from "@chakra-ui/react";
 import Menu from "../Templetes/Menu";
 import Header from "../Templetes/Header";
 import { Button } from "../ui/button";
 import { Field } from "../ui/field";
 import { useForm } from "react-hook-form";
-import { AnswerData } from "@/domain/AnswerData";
-import { useState } from "react";
-import { addAnswer } from "@/utils/supabaseFunction";
 import { useLocation, useNavigate } from "react-router-dom";
+
+import { AnswerData } from "../../domain/AnswerData";
+import { addAnswer } from "../../utils/supabaseFunction";
 
 type Inputs = {
   link: string;

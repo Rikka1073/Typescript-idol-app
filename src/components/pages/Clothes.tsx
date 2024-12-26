@@ -1,8 +1,8 @@
 import { Box, Image, Link, Spinner, Text } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import Menu from "../Templetes/Menu";
-import { fetchImages } from "@/utils/supabaseFunction";
 import Header from "../Templetes/Header";
+import { fetchImages } from "../../utils/supabaseFunction";
 
 type ImageType = {
   file_name: string;

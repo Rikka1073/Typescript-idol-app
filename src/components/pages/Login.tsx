@@ -3,7 +3,7 @@ import { PasswordInput } from "../ui/password-input";
 import { Button } from "../ui/button";
 import { useNavigate } from "react-router-dom";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { getAllUsersData } from "@/utils/supabaseFunction";
+import { getAllUsersData } from "../../utils/supabaseFunction";
 
 type Inputs = {
   username: string;
@@ -51,7 +51,7 @@ const Login = () => {
         position="relative"
       >
         <Box pt={20}>
-          <Text color="white" fontSize="4xl" textAlign="center" mb={20}>
+          <Text color="white" fontSize="4xl" textAlign="center" mb={20} data-testid="pageTitle">
             Login
           </Text>
           <form onSubmit={handleSubmit(onSubmit)}>

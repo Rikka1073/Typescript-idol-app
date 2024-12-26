@@ -1,11 +1,12 @@
-import { Box, Image, Spinner, Text } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
+import { Box, Image, Spinner, Text } from "@chakra-ui/react";
 import Menu from "../Templetes/Menu";
-import { useParams } from "react-router-dom";
-import { supabase } from "@/utils/supabase";
 import Header from "../Templetes/Header";
-import { getAnswer } from "@/utils/supabaseFunction";
-import { AnswerData } from "@/domain/AnswerData";
+import { useParams } from "react-router-dom";
+import { supabase } from "../../utils/supabase";
+
+import { AnswerData } from "../../domain/AnswerData";
+import { getAnswer } from "../../utils/supabaseFunction";
 
 type ImageType = {
   file_name: string;

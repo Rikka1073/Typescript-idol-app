@@ -2,11 +2,11 @@ import { Box, Stack, Text } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 import { Controller, useForm } from "react-hook-form";
 
-import { supabase } from "@/utils/supabase";
 import { FileUploadDropzone, FileUploadList, FileUploadRoot } from "../ui/file-button";
 import { Button } from "../ui/button";
 import Menu from "../Templetes/Menu";
 import Header from "../Templetes/Header";
+import { supabase } from "../../utils/supabase";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -79,7 +79,7 @@ const Register = () => {
                 render={({ fieldState }) => (
                   <>
                     <FileUploadRoot onChange={onchangeImage} alignItems="stretch">
-                      <FileUploadDropzone label="Drag and drop here to upload" color="black" />
+                      <FileUploadDropzone label="Drag and drop here to upload" />
                       <FileUploadList clearable />
                     </FileUploadRoot>
                     {fieldState.error && (

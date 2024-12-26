@@ -1,11 +1,12 @@
+import { useState } from "react";
 import { Box, Center, Input, Text } from "@chakra-ui/react";
 import { PasswordInput } from "../ui/password-input";
 import { Button } from "../ui/button";
 import { useNavigate } from "react-router-dom";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { useState } from "react";
-import { User } from "@/domain/User";
-import { createUser, getAllUsersData } from "@/utils/supabaseFunction";
+
+import { User } from "../../domain/User";
+import { createUser, getAllUsersData } from "../../utils/supabaseFunction";
 
 type Inputs = {
   username: string;
