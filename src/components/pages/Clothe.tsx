@@ -50,6 +50,7 @@ const Clothe = () => {
 
   return (
     <Box>
+      <h2>clothesです</h2>
       <Header pageId={id} />
       <Box
         bg="red.200"

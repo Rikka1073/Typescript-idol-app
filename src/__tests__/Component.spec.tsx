@@ -1,27 +1,27 @@
 import { act, fireEvent, render, screen, waitFor } from "@testing-library/react";
-import { useForm } from "react-hook-form";
 import Login from "../components/pages/Login";
 import { BrowserRouter, MemoryRouter, Route, Routes } from "react-router-dom";
 import { ChakraProvider, defaultSystem } from "@chakra-ui/react";
 import { User } from "../domain/User";
-import { getAllUsersData } from "../utils/supabaseFunction";
 import Clothes from "../components/pages/Clothes";
-import Register from "../components/pages/Register";
 import Answer from "../components/pages/Answer";
-// import Register from "../components/pages/Register";
-// import Answer from "../components/pages/Answer";
-// import { AnswerData } from "../domain/AnswerData";
-// import { addAnswer } from "../utils/supabaseFunction";
+import { AnswerData } from "../domain/AnswerData";
+import { s } from "vite/dist/node/types.d-aGj9QkWt";
 
 const mockUserDate = jest.fn().mockResolvedValue([new User("userName", "passWord")]);
 const mockImgDate = jest.fn().mockResolvedValue([{ file_name: "testImg", file_url: "testUrl" }]);
+const mockAnswerDate = jest
+  .fn()
+  .mockResolvedValue([new AnswerData("テストリンク", "テストアイドル", "テスト", "1")]);
 
 jest.mock("../utils/supabaseFunction", () => {
   return {
     getAllUsersData: () => mockUserDate(),
     fetchImages: () => mockImgDate(),
+    addAnswer: () => mockAnswerDate(),
   };
 });
+
 const mockNavigator = jest.fn();
 jest.mock("react-router-dom", () => ({
   ...jest.requireActual("react-router-dom"),
@@ -122,56 +122,29 @@ describe("Answer", () => {
     await waitFor(() => {
       const title = screen.getByTestId("pageTitle");
       expect(title).toBeInTheDocument();
-      screen.debug();
     });
   });
+
+  test("登録ボタンを押すと回答が登録できる", async () => {
+    await act(async () => {
+      render(
+        <MemoryRouter initialEntries={["/Clothes"]}>
+          <ChakraProvider value={defaultSystem}>
+            <Routes>
+              <Route path="/Clothes" element={<Clothes />} />
+            </Routes>
+          </ChakraProvider>
+        </MemoryRouter>
+      );
+    });
+
+    const form = screen.getByRole("form");
+    fireEvent.submit(form);
+
+    await waitFor(() => {
+      expect(mockNavigator).toHaveBeenCalledWith("/Clothes");
+    });
+
+    screen.debug();
+  });
 });
-
-// describe("Answer", () => {
-//   const mockAnswerDate = jest
-//     .fn()
-//     .mockResolvedValue([new AnswerData("テストリンク", "テストアイドル", "テスト", "1")]);
-
-//   jest.mock("../utils/supabaseFunction", () => {
-//     return {
-//       addAnswer: () => mockAnswerDate(),
-//     };
-//   });
-
-//   const mockDate = jest
-//     .fn()
-//     .mockResolvedValue([new AnswerData("テストリンク", "テストアイドル", "テスト", "1")]);
-
-//   beforeEach(() => {
-//     render(
-//       <BrowserRouter>
-//         <ChakraProvider value={defaultSystem}>
-//           <Answer />
-//         </ChakraProvider>
-//       </BrowserRouter>
-//     );
-//   });
-
-//   test("タイトルがあること", async () => {
-//     await waitFor(() => {
-//       const title = screen.getByTestId("pageTitle");
-//       expect(title).toBeInTheDocument();
-//       screen.debug();
-//     });
-//   });
-
-//   test("登録ボタンを押すと回答が登録できる", async () => {
-//     // await act(async () => {
-//     //   render(
-//     //     <MemoryRouter initialEntries={["/cards/register"]}>
-//     //       <Routes>
-//     //         <Route path="/cards/register" element={<Register />} />
-//     //       </Routes>
-//     //     </MemoryRouter>
-//     //   );
-//     // });
-
-//     const button = screen.getByTestId("registerButton");
-//     fireEvent.click(button);
-//   });
-// });

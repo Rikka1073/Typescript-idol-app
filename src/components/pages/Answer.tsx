@@ -22,6 +22,7 @@ const Answer = () => {
   const [answers, setAnswers] = useState<Inputs[]>([]);
   const methods = useForm<Inputs>();
   const { handleSubmit, register } = methods;
+
   const onsubmit = handleSubmit((data) => {
     const newAnswer: AnswerData = {
       link: data.link,
@@ -29,6 +30,7 @@ const Answer = () => {
       text: data.text,
       pramsId: data.pramsId,
     };
+    console.log("クリックしました");
     const newAnswers = [...answers, newAnswer];
     setAnswers(newAnswers);
     addAnswer(data.link, data.idol, data.text, data.pramsId);
@@ -61,7 +63,7 @@ const Answer = () => {
           px={{ base: "10px", sm: "20px", md: "20px", lg: "30px" }}
           rounded="md"
         >
-          <form onSubmit={onsubmit}>
+          <form onSubmit={onsubmit} role="form">
             <Stack gap={5}>
               <Field label="リンク" required>
                 <Input {...register("link")} />
@@ -73,13 +75,7 @@ const Answer = () => {
                 <Input {...register("text")} />
               </Field>
               <Input type="hidden" value={valueId} {...register("pramsId")} />
-              <Button
-                type="submit"
-                w="100%"
-                bg="#f9a8d4"
-                fontWeight="bold"
-                data-testid="registerButton"
-              >
+              <Button type="submit" w="100%" bg="#f9a8d4" fontWeight="bold">
                 登録
               </Button>
             </Stack>
