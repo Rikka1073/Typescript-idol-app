@@ -55,7 +55,9 @@ const Menu = ({ pageId }: MenuProps) => {
           <IoIosAddCircle size="30px" color="#f9a8d4" />
         </Center>
         <Center>
-          <Text color="#f9a8d4">Add</Text>
+          <Text color="#f9a8d4" data-testid="addButton">
+            Add
+          </Text>
         </Center>
       </Box>
       {id && (

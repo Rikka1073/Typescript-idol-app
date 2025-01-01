@@ -34,6 +34,7 @@ const Clothes = () => {
 
   return (
     <Box>
+      <h2>clothes</h2>
       <Header pageId={undefined} />
       <Box
         bg="red.200"

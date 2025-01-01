@@ -23,7 +23,8 @@ const Answer = () => {
   const methods = useForm<Inputs>();
   const { handleSubmit, register } = methods;
 
-  const onsubmit = handleSubmit((data) => {
+  const onsubmit = handleSubmit(async (data) => {
+    navigate("/Clothes");
     const newAnswer: AnswerData = {
       link: data.link,
       idol: data.idol,
@@ -31,10 +32,10 @@ const Answer = () => {
       pramsId: data.pramsId,
     };
     console.log("クリックしました");
+    console.log(data);
+    await addAnswer(data.link, data.idol, data.text, data.pramsId);
     const newAnswers = [...answers, newAnswer];
     setAnswers(newAnswers);
-    addAnswer(data.link, data.idol, data.text, data.pramsId);
-    navigate("/Clothes");
   });
 
   const search = useLocation().search;

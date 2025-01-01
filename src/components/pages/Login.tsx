@@ -22,7 +22,6 @@ const Login = () => {
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     console.log(data);
-    console.log("ボタンがクリックされました");
     const userData = await getAllUsersData();
     const userExists = userData?.some(
       (user) => user.username === username && user.password === password
