@@ -49,7 +49,7 @@ const Answer = () => {
     >
       <Box md={{ width: "50%", m: "auto" }}>
         <Header pageId={undefined} />
-        <Text color="black" fontSize="2xl" mb={2}>
+        <Text color="black" fontSize="2xl" mb={2} data-testid="pageTitle">
           回答する
         </Text>
         <Text color="black" fontSize="base" mb={4}>
@@ -73,7 +73,13 @@ const Answer = () => {
                 <Input {...register("text")} />
               </Field>
               <Input type="hidden" value={valueId} {...register("pramsId")} />
-              <Button type="submit" w="100%" bg="#f9a8d4" fontWeight="bold">
+              <Button
+                type="submit"
+                w="100%"
+                bg="#f9a8d4"
+                fontWeight="bold"
+                data-testid="registerButton"
+              >
                 登録
               </Button>
             </Stack>

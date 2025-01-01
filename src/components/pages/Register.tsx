@@ -61,7 +61,7 @@ const Register = () => {
     >
       <Box md={{ width: "50%", m: "auto" }}>
         <Header pageId={undefined} />
-        <Text color="black" fontSize="2xl" mb={2}>
+        <Text color="black" fontSize="2xl" mb={2} date-testid="pageTitle">
           服を探す
         </Text>
         <Text color="black" fontSize="base" mb={4}>

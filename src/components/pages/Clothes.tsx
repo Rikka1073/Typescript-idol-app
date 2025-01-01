@@ -59,7 +59,7 @@ const Clothes = () => {
             <Box display="flex" alignItems="center" justifyContent="center" h="100vh" w="full">
               <Box textAlign="center">
                 <Spinner color="white" />
-                <Text color="white" textAlign="center" mt={2}>
+                <Text color="white" textAlign="center" mt={2} data-testid="loading">
                   Loading...
                 </Text>
               </Box>
@@ -73,6 +73,7 @@ const Clothes = () => {
                 h={{ base: "30%", sm: "40%", md: "35%", lg: "45%" }}
                 rounded="xl"
                 shadow="md"
+                data-testid="clothes"
               >
                 <Link href={`/Clothes/${image.id}`} display="block" w="100%" h="100%">
                   <Image src={image.file_url} alt="clothes" w="80%" margin="auto" py={4} />
