@@ -39,21 +39,6 @@ const Login = () => {
   const username = watch("username");
   const password = watch("password");
 
-  // const onClickLoginButton = async () => {
-  //   console.log("ボタンがクリックされました");
-  //   const userData = await getAllUsersData();
-  //   const userExists = userData?.some(
-  //     (user) => user.username === username && user.password === password
-  //   );
-  //   console.log("userExists:", userExists);
-  //   if (userExists) {
-  //     navigate("/Clothes");
-  //     console.log("ログイン成功");
-  //   } else {
-  //     alert("ユーザーが存在しません");
-  //   }
-  // };
-
   const onClickBackButton = () => {
     navigate("/");
   };
