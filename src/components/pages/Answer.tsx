@@ -66,13 +66,13 @@ const Answer = () => {
           <form onSubmit={onsubmit} role="form">
             <Stack gap={5}>
               <Field label="リンク" required>
-                <Input {...register("link")} />
+                <Input {...register("link")} data-testid="linkInput" />
               </Field>
               <Field label="アイドル名・グループ名">
-                <Input {...register("idol")} />
+                <Input {...register("idol")} data-testid="idolInput" />
               </Field>
               <Field label="詳細">
-                <Input {...register("text")} />
+                <Input {...register("text")} data-testid="textInput" />
               </Field>
               <Input type="hidden" value={valueId} {...register("pramsId")} />
               <Button type="submit" w="100%" bg="#f9a8d4" fontWeight="bold">
