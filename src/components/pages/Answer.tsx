@@ -21,7 +21,11 @@ const Answer = () => {
   const navigate = useNavigate();
   const [answers, setAnswers] = useState<Inputs[]>([]);
   const methods = useForm<Inputs>();
-  const { handleSubmit, register } = methods;
+  const {
+    handleSubmit,
+    register,
+    formState: { errors },
+  } = methods;
 
   const onsubmit = handleSubmit(async (data) => {
     navigate("/Clothes");
@@ -66,9 +70,14 @@ const Answer = () => {
         >
           <form onSubmit={onsubmit} role="form">
             <Stack gap={5}>
-              <Field label="リンク" required>
-                <Input {...register("link")} data-testid="linkInput" />
+              <Field label="リンク">
+                <Input {...register("link", { required: true })} data-testid="linkInput" />
               </Field>
+              {errors.link && (
+                <Text color="red" fontWeight="bold" data-testid="passwordError">
+                  入力は必須です
+                </Text>
+              )}
               <Field label="アイドル名・グループ名">
                 <Input {...register("idol")} data-testid="idolInput" />
               </Field>
