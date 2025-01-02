@@ -126,36 +126,58 @@ describe("Answer", () => {
     });
   });
 
-  // test("登録ボタンを押すと回答が登録できる", async () => {
-  //   await act(async () => {
-  //     render(
-  //       <BrowserRouter>
-  //         <ChakraProvider value={defaultSystem}>
-  //           <Routes>
-  //             <Route path="/Clothes" element={<Clothes />} />
-  //           </Routes>
-  //         </ChakraProvider>
-  //       </BrowserRouter>
-  //     );
-  //   });
+  test("空欄で送信するとバリデーションが出ること", async () => {
+    mockAnswerDate.mockResolvedValue([new AnswerData("", "", "", "")]);
 
-  //   const answerLinkInput = screen.getByTestId("linkInput") as HTMLInputElement;
-  //   const answerIdolInput = screen.getByTestId("idolInput") as HTMLInputElement;
-  //   const answerTextInput = screen.getByTestId("textInput") as HTMLInputElement;
+    const answerLinkInput = screen.getByTestId("linkInput") as HTMLInputElement;
+    const answerIdolInput = screen.getByTestId("idolInput") as HTMLInputElement;
+    const answerTextInput = screen.getByTestId("textInput") as HTMLInputElement;
+    const idTextInput = screen.getByTestId("idInput") as HTMLInputElement;
 
-  //   fireEvent.change(answerLinkInput, { target: { value: "テストリンク" } });
-  //   fireEvent.change(answerIdolInput, { target: { value: "テストアイドル" } });
-  //   fireEvent.change(answerTextInput, { target: { value: "テスト" } });
+    fireEvent.change(answerLinkInput, { target: { value: "" } });
+    fireEvent.change(answerIdolInput, { target: { value: "" } });
+    fireEvent.change(answerTextInput, { target: { value: "" } });
+    fireEvent.change(idTextInput, { target: { value: "" } });
 
-  //   const form = screen.getByRole("form");
-  //   fireEvent.submit(form);
+    const form = screen.getByRole("form");
+    fireEvent.submit(form);
 
-  //   await waitFor(() => {
-  //     expect(mockNavigator).toHaveBeenCalledWith("/Clothes");
-  //   });
+    await waitFor(() => {
+      const errorLink = screen.getByTestId("linkError");
+      expect(errorLink).toBeInTheDocument();
+    });
+  });
 
-  //   screen.debug();
-  // });
+  test("登録ボタンを押すと回答が登録できる", async () => {
+    await act(async () => {
+      render(
+        <BrowserRouter>
+          <ChakraProvider value={defaultSystem}>
+            <Routes>
+              <Route path="/Clothes" element={<Clothes />} />
+            </Routes>
+          </ChakraProvider>
+        </BrowserRouter>
+      );
+    });
+
+    const answerLinkInput = screen.getByTestId("linkInput") as HTMLInputElement;
+    const answerIdolInput = screen.getByTestId("idolInput") as HTMLInputElement;
+    const answerTextInput = screen.getByTestId("textInput") as HTMLInputElement;
+
+    fireEvent.change(answerLinkInput, { target: { value: "テストリンク" } });
+    fireEvent.change(answerIdolInput, { target: { value: "テストアイドル" } });
+    fireEvent.change(answerTextInput, { target: { value: "テスト" } });
+
+    const form = screen.getByRole("form");
+    fireEvent.submit(form);
+
+    await waitFor(() => {
+      expect(mockNavigator).toHaveBeenCalledWith("/Clothes");
+    });
+
+    screen.debug();
+  });
 
   // test("新規登録を押すと遷移する", async () => {
   //   await act(async () => {

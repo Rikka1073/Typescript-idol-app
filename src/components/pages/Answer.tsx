@@ -28,18 +28,18 @@ const Answer = () => {
   } = methods;
 
   const onsubmit = handleSubmit(async (data) => {
-    navigate("/Clothes");
     const newAnswer: AnswerData = {
       link: data.link,
       idol: data.idol,
       text: data.text,
       pramsId: data.pramsId,
     };
-    console.log("クリックしました");
+    console.log("回答を送信しました");
     console.log(data);
     await addAnswer(data.link, data.idol, data.text, data.pramsId);
     const newAnswers = [...answers, newAnswer];
     setAnswers(newAnswers);
+    navigate("/Clothes");
   });
 
   const search = useLocation().search;
@@ -74,7 +74,7 @@ const Answer = () => {
                 <Input {...register("link", { required: true })} data-testid="linkInput" />
               </Field>
               {errors.link && (
-                <Text color="red" fontWeight="bold" data-testid="passwordError">
+                <Text color="red" fontWeight="bold" data-testid="linkError">
                   入力は必須です
                 </Text>
               )}
@@ -84,7 +84,7 @@ const Answer = () => {
               <Field label="詳細">
                 <Input {...register("text")} data-testid="textInput" />
               </Field>
-              <Input type="hidden" value={valueId} {...register("pramsId")} />
+              <Input type="hidden" value={valueId} {...register("pramsId")} data-testid="idInput" />
               <Button type="submit" w="100%" bg="#f9a8d4" fontWeight="bold">
                 登録
               </Button>
