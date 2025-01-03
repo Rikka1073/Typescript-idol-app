@@ -151,23 +151,25 @@ describe("Answer", () => {
   test("登録ボタンを押すと回答が登録できる", async () => {
     await act(async () => {
       render(
-        <BrowserRouter>
+        <MemoryRouter initialEntries={["/Clothes"]}>
           <ChakraProvider value={defaultSystem}>
             <Routes>
               <Route path="/Clothes" element={<Clothes />} />
             </Routes>
           </ChakraProvider>
-        </BrowserRouter>
+        </MemoryRouter>
       );
     });
 
     const answerLinkInput = screen.getByTestId("linkInput") as HTMLInputElement;
     const answerIdolInput = screen.getByTestId("idolInput") as HTMLInputElement;
     const answerTextInput = screen.getByTestId("textInput") as HTMLInputElement;
+    const idTextInput = screen.getByTestId("idInput") as HTMLInputElement;
 
     fireEvent.change(answerLinkInput, { target: { value: "テストリンク" } });
     fireEvent.change(answerIdolInput, { target: { value: "テストアイドル" } });
     fireEvent.change(answerTextInput, { target: { value: "テスト" } });
+    fireEvent.change(idTextInput, { target: { value: "テスト" } });
 
     const form = screen.getByRole("form");
     fireEvent.submit(form);
@@ -175,6 +177,10 @@ describe("Answer", () => {
     await waitFor(() => {
       expect(mockNavigator).toHaveBeenCalledWith("/Clothes");
     });
+
+    // await waitFor(() => {
+    //   expect(screen.getByTestId("h2")).toBeInTheDocument();
+    // });
 
     screen.debug();
   });
