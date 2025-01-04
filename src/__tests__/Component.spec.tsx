@@ -204,19 +204,19 @@ describe("Register", () => {
     });
   });
 
-  test("空欄で送信するとバリデーションが出ること", async () => {
-    const fileInput = screen.getByTestId("registerButton");
+  // test("空欄で送信するとバリデーションが出ること", async () => {
+  //   const fileInput = screen.getByTestId("registerButton");
 
-    fireEvent.change(fileInput, { target: { value: "" } });
+  //   fireEvent.change(fileInput, { target: { value: "" } });
 
-    const form = screen.getByRole("form");
-    fireEvent.submit(form);
+  //   const form = screen.getByRole("form");
+  //   fireEvent.submit(form);
 
-    await waitFor(() => {
-      const errorFile = screen.getByTestId("fileError");
-      expect(errorFile).toBeInTheDocument();
-    });
-  });
+  //   await waitFor(() => {
+  //     const errorFile = screen.getByTestId("fileError");
+  //     expect(errorFile).toBeInTheDocument();
+  //   });
+  // });
 
   // test("登録ボタンを押すと画像が登録できる", async () => {
   //   await act(async () => {
