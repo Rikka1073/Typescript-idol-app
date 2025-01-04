@@ -184,25 +184,64 @@ describe("Answer", () => {
 
     screen.debug();
   });
+});
 
-  // test("新規登録を押すと遷移する", async () => {
+describe("Register", () => {
+  beforeEach(() => {
+    render(
+      <BrowserRouter>
+        <ChakraProvider value={defaultSystem}>
+          <Register />
+        </ChakraProvider>
+      </BrowserRouter>
+    );
+  });
+
+  test("タイトルがあること", async () => {
+    await waitFor(() => {
+      const title = screen.getByTestId("pageTitle");
+      expect(title).toBeInTheDocument();
+    });
+  });
+
+  test("空欄で送信するとバリデーションが出ること", async () => {
+    const fileInput = screen.getByTestId("registerButton");
+
+    fireEvent.change(fileInput, { target: { value: "" } });
+
+    const form = screen.getByRole("form");
+    fireEvent.submit(form);
+
+    await waitFor(() => {
+      const errorFile = screen.getByTestId("fileError");
+      expect(errorFile).toBeInTheDocument();
+    });
+  });
+
+  // test("登録ボタンを押すと画像が登録できる", async () => {
   //   await act(async () => {
   //     render(
-  //       <BrowserRouter>
+  //       <MemoryRouter initialEntries={["/Clothes"]}>
   //         <ChakraProvider value={defaultSystem}>
   //           <Routes>
-  //             <Route path="/Clothes/Register" element={<Register />} />
+  //             <Route path="/Clothes" element={<Clothes />} />
   //           </Routes>
   //         </ChakraProvider>
-  //       </BrowserRouter>
+  //       </MemoryRouter>
   //     );
   //   });
-  //   const button = screen.getByTestId("addButton");
-  //   fireEvent.click(button);
+
+  //   const fileInput = screen.getByTestId("fileInput") as HTMLInputElement;
+
+  //   fireEvent.change(fileInput, { target: { value: "testImg" } });
+
+  //   const form = screen.getByRole("form");
+  //   fireEvent.submit(form);
 
   //   await waitFor(() => {
-  //     expect(mockNavigator).toHaveBeenCalledWith("/Clothes/Register");
+  //     expect(mockNavigator).toHaveBeenCalledWith("/Clothes");
   //   });
+
   //   screen.debug();
   // });
 });

@@ -61,7 +61,7 @@ const Register = () => {
     >
       <Box md={{ width: "50%", m: "auto" }}>
         <Header pageId={undefined} />
-        <Text color="black" fontSize="2xl" mb={2} date-testid="pageTitle">
+        <Text color="black" fontSize="2xl" mb={2} data-testid="pageTitle">
           服を探す
         </Text>
         <Text color="black" fontSize="base" mb={4}>
@@ -69,7 +69,7 @@ const Register = () => {
         </Text>
         <Box bg="white" p={4} rounded="md">
           <Stack>
-            <form onSubmit={handleSubmit(onSubmit)}>
+            <form onSubmit={handleSubmit(onSubmit)} role="form">
               <Controller
                 name="file"
                 control={control}
@@ -83,14 +83,28 @@ const Register = () => {
                       <FileUploadList clearable />
                     </FileUploadRoot>
                     {fieldState.error && (
-                      <Text color="red.500" fontSize="sm" fontWeight="bold" mt={4}>
+                      <Text
+                        color="red.500"
+                        fontSize="sm"
+                        fontWeight="bold"
+                        mt={4}
+                        data-testid="fileError"
+                      >
                         {fieldState.error.message}
                       </Text>
                     )}
                   </>
                 )}
               />
-              <Button type="submit" size="sm" bg="#f9a8d4" w="100%" fontWeight="bold" mt={4}>
+              <Button
+                type="submit"
+                size="sm"
+                bg="#f9a8d4"
+                w="100%"
+                fontWeight="bold"
+                mt={4}
+                data-testid="registerButton"
+              >
                 登録
               </Button>
             </form>
