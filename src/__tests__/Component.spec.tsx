@@ -9,19 +9,6 @@ import { AnswerData } from "../domain/AnswerData";
 import Register from "../components/pages/Register";
 import { createClient } from "@supabase/supabase-js";
 
-// const mockFiles = [
-//   {
-//     file_name: "test1.jpg",
-//     path: "https://nkorgdijxhnswdubdvri.supabase.co/storage/v1/object/public/pictures/Clothes/test1.jpg",
-//   },
-// ];
-// const mockList = jest.fn().mockResolvedValue({ data: mockFiles, error: null });
-// const mockUpload = jest.fn().mockResolvedValue({ data: null, error: null });
-// const mockFrom = jest.fn(() => ({
-//   list: mockList,
-//   upload: mockUpload,
-// }));
-
 const mockUserDate = jest.fn().mockResolvedValue([new User("userName", "passWord")]);
 const mockImgDate = jest.fn().mockResolvedValue([{ file_name: "testImg", file_url: "testUrl" }]);
 const mockAnswerDate = jest
@@ -36,22 +23,23 @@ jest.mock("../utils/supabaseFunction", () => {
   };
 });
 
-jest.mock("@supabase/supabase-js", () => ({
-  createClient: jest.fn(() => ({
-    storage: {
-      from: jest.fn(() => ({
-        getPublicUrl: jest.fn().mockReturnValue({
-          publicUrl: "https://example.supabase.co/storage/v1/object/public/folder/test01.jpg",
-        }),
-      })),
-    },
-  })),
-}));
-
 const mockNavigator = jest.fn();
 jest.mock("react-router-dom", () => ({
   ...jest.requireActual("react-router-dom"),
   useNavigate: () => mockNavigator,
+}));
+
+jest.mock("@supabase/supabase-js", () => ({
+  createClient: jest.fn(() => ({
+    storage: {
+      from: jest.fn((bucketName) => ({
+        upload: jest.fn().mockResolvedValue({ data: {}, error: null }),
+        getPublicUrl: jest.fn(() => ({
+          publicUrl: `https://example.supabase.co/storage/v1/object/public/${bucketName}/test01.jpg`,
+        })),
+      })),
+    },
+  })),
 }));
 
 describe("Login", () => {
@@ -245,17 +233,39 @@ describe("Register", () => {
   });
 
   test("登録ボタンを押すと画像が登録できる", async () => {
-    const supabaseClient = createClient("url", "anon_key");
-
-    const { data } = supabaseClient.storage.from("bucket_name").getPublicUrl("folder/test01.jpg");
-
-    if (data) {
-      const { publicUrl } = data;
-      expect(publicUrl).toBe(
-        "https://example.supabase.co/storage/v1/object/public/folder/test01.jpg"
+    await act(async () => {
+      render(
+        <MemoryRouter initialEntries={["/cards/user_id"]}>
+          <Routes>
+            <Route path="/Clothes" element={<Clothes />} />
+          </Routes>
+        </MemoryRouter>
       );
-    }
+    });
+    const fileInput = screen.getByTestId("registerForm");
+    const testFile = new File(["test content"], "test01.jpg", { type: "image/jpeg" });
+    fireEvent.change(fileInput, { target: { files: [testFile] } });
 
-    expect(createClient).toHaveBeenCalledWith("url", "anon_key");
+    // 登録ボタンをクリック
+    const registerButton = screen.getByTestId("registerButton");
+    fireEvent.click(registerButton);
+
+    // SupabaseのAPI呼び出しを確認
+    const supabaseClient = createClient("url", "anon_key");
+    await waitFor(() => {
+      expect(supabaseClient.storage.from).toHaveBeenCalledWith("clothes");
+      expect(supabaseClient.storage.from("clothes").upload).toHaveBeenCalledWith(
+        "folder/test01.jpg",
+        expect.any(File)
+      );
+      expect(supabaseClient.storage.from("clothes").getPublicUrl).toHaveBeenCalledWith(
+        "folder/test01.jpg"
+      );
+    });
+
+    // ページ遷移を確認
+    await waitFor(() => {
+      expect(mockNavigator).toHaveBeenCalledWith("/遷移先");
+    });
   });
 });

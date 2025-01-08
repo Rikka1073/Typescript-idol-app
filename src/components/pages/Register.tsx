@@ -68,7 +68,7 @@ const Register = () => {
         </Text>
         <Box bg="white" p={4} rounded="md">
           <Stack>
-            <form onSubmit={handleSubmit(onSubmit)} role="form">
+            <form onSubmit={handleSubmit(onSubmit)} role="form" data-testid="registerForm">
               <Controller
                 name="file"
                 control={control}
