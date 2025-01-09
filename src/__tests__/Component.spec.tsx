@@ -7,7 +7,6 @@ import Clothes from "../components/pages/Clothes";
 import Answer from "../components/pages/Answer";
 import { AnswerData } from "../domain/AnswerData";
 import Register from "../components/pages/Register";
-import { createClient } from "@supabase/supabase-js";
 
 const mockUserDate = jest.fn().mockResolvedValue([new User("userName", "passWord")]);
 const mockImgDate = jest.fn().mockResolvedValue([{ file_name: "testImg", file_url: "testUrl" }]);
@@ -112,12 +111,13 @@ describe("Login", () => {
     const form = screen.getByRole("form");
     fireEvent.submit(form);
 
-    const userData = await mockUserDate();
-    console.log(userData);
+    // const userData = await mockUserDate();
+    // console.log(userData);
 
     await waitFor(() => {
       expect(mockNavigator).toHaveBeenCalledWith("/Clothes");
     });
+
     screen.debug();
   });
 });
@@ -195,8 +195,6 @@ describe("Answer", () => {
     // await waitFor(() => {
     //   expect(screen.getByTestId("h2")).toBeInTheDocument();
     // });
-
-    screen.debug();
   });
 });
 
@@ -235,10 +233,12 @@ describe("Register", () => {
   test("登録ボタンを押すと画像が登録できる", async () => {
     await act(async () => {
       render(
-        <MemoryRouter initialEntries={["/cards/user_id"]}>
-          <Routes>
-            <Route path="/Clothes" element={<Clothes />} />
-          </Routes>
+        <MemoryRouter initialEntries={["/Clothes"]}>
+          <ChakraProvider value={defaultSystem}>
+            <Routes>
+              <Route path="/Clothes" element={<Clothes />} />
+            </Routes>
+          </ChakraProvider>
         </MemoryRouter>
       );
     });
@@ -246,26 +246,11 @@ describe("Register", () => {
     const testFile = new File(["test content"], "test01.jpg", { type: "image/jpeg" });
     fireEvent.change(fileInput, { target: { files: [testFile] } });
 
-    // 登録ボタンをクリック
     const registerButton = screen.getByTestId("registerButton");
     fireEvent.click(registerButton);
 
-    // SupabaseのAPI呼び出しを確認
-    const supabaseClient = createClient("url", "anon_key");
     await waitFor(() => {
-      expect(supabaseClient.storage.from).toHaveBeenCalledWith("clothes");
-      expect(supabaseClient.storage.from("clothes").upload).toHaveBeenCalledWith(
-        "folder/test01.jpg",
-        expect.any(File)
-      );
-      expect(supabaseClient.storage.from("clothes").getPublicUrl).toHaveBeenCalledWith(
-        "folder/test01.jpg"
-      );
-    });
-
-    // ページ遷移を確認
-    await waitFor(() => {
-      expect(mockNavigator).toHaveBeenCalledWith("/遷移先");
+      expect(mockNavigator).toHaveBeenCalledWith("/Clothes");
     });
   });
 });

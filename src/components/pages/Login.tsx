@@ -26,7 +26,7 @@ const Login = () => {
     const userExists = userData?.some(
       (user) => user.username === username && user.password === password
     );
-    console.log("userExists:", userExists);
+    // console.log("userExists:", userExists);
     if (userExists) {
       navigate("/Clothes");
       console.log("ログイン成功");
