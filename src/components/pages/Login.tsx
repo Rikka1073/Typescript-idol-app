@@ -21,15 +21,12 @@ const Login = () => {
   } = useForm<Inputs>({ mode: "onBlur" });
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
-    console.log(data);
     const userData = await getAllUsersData();
     const userExists = userData?.some(
       (user) => user.username === username && user.password === password
     );
-    // console.log("userExists:", userExists);
     if (userExists) {
       navigate("/Clothes");
-      // console.log("ログイン成功");
     } else {
       alert("ユーザーが存在しません");
     }

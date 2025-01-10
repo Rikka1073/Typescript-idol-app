@@ -40,7 +40,6 @@ const Clothe = () => {
         const data = await getAnswer();
         const matchAnswer = data?.filter((item) => item.pramsId === id);
         setAnswer(matchAnswer || []);
-        console.log("matchAnswer", matchAnswer);
       } catch (error) {
         console.error("Error fetching answer:", error);
       }

@@ -34,14 +34,10 @@ const Answer = () => {
       text: data.text,
       pramsId: data.pramsId,
     };
-    console.log("回答を送信しました");
-    console.log(data);
     await addAnswer(data.link, data.idol, data.text, data.pramsId);
     const newAnswers = [...answers, newAnswer];
     setAnswers(newAnswers);
-    console.log("addAnswer 完了");
     navigate("/Clothes");
-    console.log("navigate 実行");
   });
 
   const search = useLocation().search;

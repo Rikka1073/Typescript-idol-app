@@ -22,7 +22,6 @@ const Register = () => {
   };
 
   const onSubmit = async (data: { file: File | null }) => {
-    console.log("登録ボタンが押されました");
     if (!data.file) return;
     const { data: uploadData, error } = await supabase.storage
       .from("pictures")
