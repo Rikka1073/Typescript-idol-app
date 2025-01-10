@@ -78,7 +78,6 @@ const Clothes = () => {
               >
                 <Link href={`/Clothes/${image.id}`} display="block" w="100%" h="100%">
                   <Image src={image.file_url} alt="clothes" w="80%" margin="auto" py={4} />
-                  <Text textAlign="center">{image.id}</Text>
                 </Link>
               </Box>
             ))
