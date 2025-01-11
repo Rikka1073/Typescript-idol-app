@@ -72,7 +72,7 @@ const Clothes = () => {
                 </Box>
               ) : (
                 <Text color="white" textAlign="center" fontSize="3xl" fontWeight="bold">
-                  データがありません
+                  推しの情報がありません
                 </Text>
               )}
             </Box>
