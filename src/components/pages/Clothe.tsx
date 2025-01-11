@@ -56,7 +56,6 @@ const Clothe = () => {
         pt={{ base: "90px", sm: "110px", md: "130px", lg: "150px" }}
         pb="106px"
         px={5}
-        h={{ lg: "100vh" }}
       >
         <Box
           overflow={{
