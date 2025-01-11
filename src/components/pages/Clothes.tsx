@@ -13,6 +13,7 @@ type ImageType = {
 const Clothes = () => {
   const [images, setImages] = useState<ImageType[] | undefined>([]);
   const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
     fetchImages()
@@ -23,6 +24,10 @@ const Clothes = () => {
         setError(error);
         console.error(error);
       });
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 3000);
+    return () => clearTimeout(timer);
   }, []);
 
   if (error)
@@ -58,12 +63,18 @@ const Clothes = () => {
         >
           {!images || images.length === 0 ? (
             <Box display="flex" alignItems="center" justifyContent="center" h="100vh" w="full">
-              <Box textAlign="center">
-                <Spinner color="white" />
-                <Text color="white" textAlign="center" mt={2} data-testid="loading">
-                  Loading...
+              {loading ? (
+                <Box textAlign="center">
+                  <Spinner color="white" />
+                  <Text color="white" textAlign="center" mt={2} data-testid="loading">
+                    Loading...
+                  </Text>
+                </Box>
+              ) : (
+                <Text color="white" textAlign="center" fontSize="3xl" fontWeight="bold">
+                  データがありません
                 </Text>
-              </Box>
+              )}
             </Box>
           ) : (
             images.map((image, index) => (
