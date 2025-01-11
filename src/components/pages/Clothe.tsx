@@ -49,7 +49,6 @@ const Clothe = () => {
 
   return (
     <Box>
-      <h2>clothesです</h2>
       <Header pageId={id} />
       <Box
         bg="red.200"
@@ -123,7 +122,9 @@ const Clothe = () => {
               margin={{ base: "auto", md: "auto" }}
             >
               <Text color="black" textAlign="center" mt={2} fontWeight="bold">
-                回答がありません！
+                推しの情報を知りたがっている人がいます！
+                <br />
+                回答してあげましょう！
               </Text>
             </Box>
           )}
