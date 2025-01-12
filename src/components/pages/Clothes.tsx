@@ -88,7 +88,7 @@ const Clothes = () => {
                 data-testid="clothes"
               >
                 <Link href={`/Clothes/${image.id}`} display="block" w="100%" h="100%">
-                  <Image src={image.file_url} alt="clothes" w="80%" margin="auto" py={4} />
+                  <Image src={image.file_url} alt="clothes" w="80%" margin="auto" py={4} h="100%" />
                 </Link>
               </Box>
             ))
