@@ -67,7 +67,7 @@ const SignUp = () => {
             <Input
               {...register("username", { required: true })}
               value={username}
-              placeholder="Username"
+              placeholder="userName"
               variant="flushed"
               _placeholder={{ color: "red.300" }}
               borderColor={"red.300"}
@@ -82,7 +82,7 @@ const SignUp = () => {
             <PasswordInput
               {...register("password", { required: true })}
               value={password}
-              placeholder="password"
+              placeholder="passWord"
               variant="flushed"
               _placeholder={{ color: "red.300" }}
               borderColor={"red.300"}

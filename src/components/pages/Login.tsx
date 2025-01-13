@@ -68,7 +68,7 @@ const Login = () => {
               )}
               <PasswordInput
                 {...register("password", { required: true })}
-                placeholder="password"
+                placeholder="passWord"
                 variant="flushed"
                 _placeholder={{ color: "white" }}
                 data-testid="password"
