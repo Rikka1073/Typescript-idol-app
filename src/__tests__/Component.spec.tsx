@@ -72,7 +72,7 @@ describe("Login", () => {
   });
 
   test("パスワードのバリデーションメッセージが表示されること", async () => {
-    const input = screen.getByPlaceholderText("password");
+    const input = screen.getByPlaceholderText("passWord");
     fireEvent.focus(input);
     fireEvent.blur(input);
 
