@@ -59,7 +59,6 @@ const Clothes = () => {
           flexWrap="wrap"
           gap="20px"
           scrollbar="hidden"
-          justifyContent="space-between"
         >
           {!images || images.length === 0 ? (
             <Box display="flex" alignItems="center" justifyContent="center" h="100vh" w="full">
