@@ -11,5 +11,8 @@ The following three functions have been implemented:
 # URL
 https://typescript-idol-app.web.app/
 
+# MORE 
+https://qiita.com/masafumi1073/items/b008bb5fb54feb735389
+
 
 
