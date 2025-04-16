@@ -1,6 +1,16 @@
 # K-Style Finder
 This is an app that lets you share outfit information of your favorite idols.
 
+# USE
+```
+npm i
+```
+Add your superbase information to ".env"
+
+```
+VITE_SUPABASE_URL=your project
+VITE_SUPABASE_ANON_KEY=your project
+```
 # Functions
 The following three functions have been implemented:
 
